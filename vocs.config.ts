@@ -8,8 +8,12 @@ export default defineConfig({
       link: '/getting-started',
     },
     {
-      text: 'Example',
-      link: '/example',
+      text: 'Add token to existing collection',
+      link: '/add-token.mdx',
+    },
+    {
+      text: 'Protocol Deployments',
+      link: '/protocol-deployments',
     },
   ],
 })
