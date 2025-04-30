@@ -4,11 +4,11 @@
 
 ## ✨ Overview
 
-In Process is a revolutionary platform for artists to create, share, and monetize their digital art on the blockchain. This documentation site provides comprehensive guides for interacting with the In Process protocol.
+In Process is a revolutionary platform for artists to create, share, and monetize their digital art onchain. This documentation site provides comprehensive guides for interacting with the In Process protocol.
 
 ## 🚀 Getting Started
 
-Visit our documentation at [https://docs.inprocess.fun/](https://docs.inprocess.fun/) to get started with creating your first digital art collection.
+Visit our documentation at [docs-in-process.vercel.app](https://docs-in-process.vercel.app/) to get started with creating your first digital art collection.
 
 ## 🛠️ Key Features
 
