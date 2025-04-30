@@ -1,6 +1,6 @@
 # Setup Actions
 
-Setup actions are essential for making your digital art tokens appear correctly on marketplaces like Zora and In Process. They provide the necessary metadata and configuration that marketplaces use to display and interact with your tokens.
+Setup actions are essential for making your digital art tokens appear correctly on marketplaces like Zora, OpenSea, Rarible, and In Process. They provide the necessary metadata and configuration that marketplaces use to display and interact with your tokens.
 
 This guide explains the various setup actions available and how to use them when creating collections and tokens.
 
@@ -154,7 +154,7 @@ const minterPermissionAction = getMinterPermissionCall(tokenId, minterAddress);
 
 ## Using Setup Actions When Creating a Collection
 
-When you create a new digital art collection, you can include setup actions to configure the first token in the collection. Here's how to do it:
+When you create a new digital art collection, you can include setup actions which are executed immediately after the collection is setup. Here's how to do it:
 
 ```javascript
 import { CdpClient } from "@coinbase/cdp-sdk";
@@ -220,7 +220,7 @@ const createContractData = encodeFunctionData({
 
 ## Combining Setup Actions for Better Marketplace Visibility
 
-For optimal visibility on marketplaces like Zora and In Process, we recommend including at minimum these setup actions:
+For optimal visibility on marketplaces like Zora, OpenSea, Rarible, and In Process, we recommend including at minimum these setup actions:
 
 1. **setupNewToken** - To define the token metadata URI and supply
 2. **updateTokenURI** - To ensure the token has the correct metadata
@@ -320,4 +320,4 @@ const sendResult = await cdp.evm.sendUserOperation({
 
 Setup actions are powerful tools for configuring your digital art tokens. By properly configuring these actions, you ensure your tokens display correctly on marketplaces and have the functionality you desire.
 
-Remember that setup actions can be mixed and matched based on your specific requirements. Experiment with different combinations to create the ideal experience for your collectors.
+Remember that setup actions can be mixed and matched based on your specific requirements. Experiment with different combinations to create the ideal experience for your collectors across Zora, OpenSea, Rarible, and other popular marketplaces.
