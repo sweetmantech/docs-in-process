@@ -12,9 +12,9 @@ Visit our documentation at [docs-in-process.vercel.app](https://docs-in-process.
 
 ## 🛠️ Key Features
 
-- **Coinbase SDK Integration** - Create collections with minimal JavaScript and the Coinbase CDP SDK
-- **Setup Actions** - Configure tokens to display correctly on marketplaces
 - **Protocol Deployments** - Access contract addresses across multiple networks
+- **Setup Actions** - Configure tokens to display correctly on marketplaces
+- **Coinbase SDK Integration** - Create collections with minimal JavaScript and the Coinbase CDP SDK (Wallet V2)
 
 ## 📚 Documentation Sections
 
@@ -54,8 +54,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Join our community of artists and developers:
 
-- Twitter: [@InProcessFun](https://twitter.com/InProcessFun)
-- Discord: [In Process Server](https://discord.gg/inprocess)
+- Twitter: [@stayinprocess](https://twitter.com/stayinprocess)
 
 ---
 
