@@ -92,7 +92,7 @@ async function createCollection() {
   // Send the transaction
   const sendResult = await cdp.evm.sendUserOperation({
     smartAccount,
-    network: "base-sepolia", // Use the appropriate network
+    network: "base-sepolia", // supported networks: https://docs.cdp.coinbase.com/api/docs/networks#network-identifiers
     paymasterUrl: process.env.CDP_PAYMASTER_URL,
     calls: [
       {
