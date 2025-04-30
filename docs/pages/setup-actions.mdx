@@ -41,60 +41,6 @@ const maxSupply = 100n; // Max token supply (use -1n for unlimited)
 const setupNewTokenAction = getSetupNewTokenCall(tokenMetadataURI, maxSupply);
 ```
 
-### Set Sale Configuration
-
-Configures how the token can be sold, including pricing and timing.
-
-```javascript
-import { zoraCreator1155ImplABI } from "@zoralabs/protocol-deployments";
-import { encodeFunctionData } from "viem";
-
-const getSetSaleCall = (tokenId: bigint) =>
-  encodeFunctionData({
-    abi: zoraCreator1155ImplABI,
-    functionName: "setSale",
-    args: [
-      tokenId,
-      {
-        saleStart: 0n, // Start immediately
-        saleEnd: 0n, // 0 for no end time
-        maxTokensPerAddress: 0n, // 0 for unlimited
-        pricePerToken: 100000000000000n, // Price in wei (0.0001 ETH)
-        fundsRecipient: "0x...", // Address to receive sale funds
-      },
-    ],
-  });
-
-// Example usage:
-const tokenId = 1n; // The token ID (usually 1 for the first token)
-const setSaleAction = getSetSaleCall(tokenId);
-```
-
-### Set Minter Permission
-
-Gives permission to a specific address to mint tokens.
-
-```javascript
-import { zoraCreator1155ImplABI } from "@zoralabs/protocol-deployments";
-import { encodeFunctionData, Address } from "viem";
-
-const getMinterPermissionCall = (tokenId: bigint, minter: Address) =>
-  encodeFunctionData({
-    abi: zoraCreator1155ImplABI,
-    functionName: "addPermission",
-    args: [
-      tokenId,
-      minter,
-      2n, // Permission type: 2 for minting
-    ],
-  });
-
-// Example usage:
-const tokenId = 1n;
-const minterAddress = "0x..."; // Address that can mint
-const minterPermissionAction = getMinterPermissionCall(tokenId, minterAddress);
-```
-
 ### Update Token URI
 
 Updates the metadata URI for an existing token.
@@ -150,6 +96,60 @@ const updateRoyaltiesAction = getUpdateRoyaltiesForTokenCall(
   royaltyBPS,
   royaltyRecipient
 );
+```
+
+### Set Sale Configuration
+
+Configures how the token can be sold, including pricing and timing.
+
+```javascript
+import { zoraCreator1155ImplABI } from "@zoralabs/protocol-deployments";
+import { encodeFunctionData } from "viem";
+
+const getSetSaleCall = (tokenId: bigint) =>
+  encodeFunctionData({
+    abi: zoraCreator1155ImplABI,
+    functionName: "setSale",
+    args: [
+      tokenId,
+      {
+        saleStart: 0n, // Start immediately
+        saleEnd: 0n, // 0 for no end time
+        maxTokensPerAddress: 0n, // 0 for unlimited
+        pricePerToken: 100000000000000n, // Price in wei (0.0001 ETH)
+        fundsRecipient: "0x...", // Address to receive sale funds
+      },
+    ],
+  });
+
+// Example usage:
+const tokenId = 1n; // The token ID (usually 1 for the first token)
+const setSaleAction = getSetSaleCall(tokenId);
+```
+
+### Set Minter Permission
+
+Gives permission to a specific address to mint tokens.
+
+```javascript
+import { zoraCreator1155ImplABI } from "@zoralabs/protocol-deployments";
+import { encodeFunctionData, Address } from "viem";
+
+const getMinterPermissionCall = (tokenId: bigint, minter: Address) =>
+  encodeFunctionData({
+    abi: zoraCreator1155ImplABI,
+    functionName: "addPermission",
+    args: [
+      tokenId,
+      minter,
+      2n, // Permission type: 2 for minting
+    ],
+  });
+
+// Example usage:
+const tokenId = 1n;
+const minterAddress = "0x..."; // Address that can mint
+const minterPermissionAction = getMinterPermissionCall(tokenId, minterAddress);
 ```
 
 ## Using Setup Actions When Creating a Collection
@@ -223,7 +223,7 @@ const createContractData = encodeFunctionData({
 For optimal visibility on marketplaces like Zora and In Process, we recommend including at minimum these setup actions:
 
 1. **setupNewToken** - To define the token metadata URI and supply
-2. **setSale** - To configure how the token can be purchased
+2. **updateTokenURI** - To ensure the token has the correct metadata
 3. **updateRoyaltiesForToken** - To ensure you receive royalties on secondary sales
 
 Here's a complete example of creating a collection with these combined setup actions:
@@ -261,20 +261,11 @@ const setupActions = [
     args: [tokenMetadataURI, 100n], // 100 max supply
   }),
 
-  // Configure sales
+  // Update token URI
   encodeFunctionData({
     abi: zoraCreator1155ImplABI,
-    functionName: 'setSale',
-    args: [
-      tokenId,
-      {
-        saleStart: 0n,
-        saleEnd: 0n,
-        maxTokensPerAddress: 0n,
-        pricePerToken: 100000000000000n, // 0.0001 ETH
-        fundsRecipient: smartAccount.address,
-      },
-    ],
+    functionName: 'updateTokenURI',
+    args: [tokenId, tokenMetadataURI],
   }),
 
   // Set royalties
