@@ -48,7 +48,7 @@ We welcome contributions from the community! Please feel free to submit pull req
 
 ## 📜 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the [MIT License](./LICENSE) - see the [LICENSE](./LICENSE) file for details. Copyright (c) 2025 sweetman.eth.
 
 ## 💬 Community
 
