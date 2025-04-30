@@ -1,12 +1,12 @@
 # Setup Actions
 
-Setup actions are essential for making your NFT tokens appear correctly on marketplaces like Zora and In Process. They provide the necessary metadata and configuration that marketplaces use to display and interact with your tokens.
+Setup actions are essential for making your digital art tokens appear correctly on marketplaces like Zora and In Process. They provide the necessary metadata and configuration that marketplaces use to display and interact with your tokens.
 
 This guide explains the various setup actions available and how to use them when creating collections and tokens.
 
 ## What are Setup Actions?
 
-Setup actions are encoded function calls that are passed to the contract when creating a new NFT collection or token. They define various aspects of the token such as:
+Setup actions are encoded function calls that are passed to the contract when creating a new digital art collection or token. They define various aspects of the token such as:
 
 - Token metadata URI
 - Supply limits
@@ -154,7 +154,7 @@ const updateRoyaltiesAction = getUpdateRoyaltiesForTokenCall(
 
 ## Using Setup Actions When Creating a Collection
 
-When you create a new NFT collection, you can include setup actions to configure the first token in the collection. Here's how to do it:
+When you create a new digital art collection, you can include setup actions to configure the first token in the collection. Here's how to do it:
 
 ```javascript
 import { CdpClient } from "@coinbase/cdp-sdk";
@@ -327,6 +327,6 @@ const sendResult = await cdp.evm.sendUserOperation({
 
 ## Conclusion
 
-Setup actions are powerful tools for configuring your NFT tokens. By properly configuring these actions, you ensure your tokens display correctly on marketplaces and have the functionality you desire.
+Setup actions are powerful tools for configuring your digital art tokens. By properly configuring these actions, you ensure your tokens display correctly on marketplaces and have the functionality you desire.
 
 Remember that setup actions can be mixed and matched based on your specific requirements. Experiment with different combinations to create the ideal experience for your collectors.
