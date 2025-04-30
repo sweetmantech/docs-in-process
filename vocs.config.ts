@@ -12,6 +12,10 @@ export default defineConfig({
       link: "/protocol-deployments",
     },
     {
+      text: "Setup Actions",
+      link: "/setup-actions",
+    },
+    {
       text: "Coinbase SDK",
       items: [
         {
