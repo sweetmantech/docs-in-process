@@ -11,5 +11,14 @@ export default defineConfig({
       text: "Protocol Deployments",
       link: "/protocol-deployments",
     },
+    {
+      text: "Coinbase SDK",
+      items: [
+        {
+          text: "Create a Collection",
+          link: "/create-collection",
+        },
+      ],
+    },
   ],
 });
