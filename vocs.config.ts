@@ -24,5 +24,14 @@ export default defineConfig({
         },
       ],
     },
+    {
+      text: "Moment",
+      items: [
+        {
+          text: "Create a Moment",
+          link: "/moment/create",
+        },
+      ],
+    },
   ],
 });
