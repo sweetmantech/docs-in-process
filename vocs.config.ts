@@ -29,7 +29,7 @@ export default defineConfig({
       items: [
         {
           text: "Quickstart",
-          link: "/feed",
+          link: "/timeline",
         },
       ],
     },
