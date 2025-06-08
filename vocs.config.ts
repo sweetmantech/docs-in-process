@@ -28,7 +28,7 @@ export default defineConfig({
       text: "Timeline",
       items: [
         {
-          text: "Quickstart",
+          text: "Browsing the Timeline",
           link: "/timeline",
         },
       ],
@@ -37,7 +37,7 @@ export default defineConfig({
       text: "Moment",
       items: [
         {
-          text: "Create a Moment",
+          text: "Creating a Moment",
           link: "/moment/create",
         },
       ],
