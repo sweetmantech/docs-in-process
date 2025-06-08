@@ -8,23 +8,6 @@ export default defineConfig({
       link: "/getting-started",
     },
     {
-      text: "Protocol Deployments",
-      link: "/protocol-deployments",
-    },
-    {
-      text: "Setup Actions",
-      link: "/setup-actions",
-    },
-    {
-      text: "Coinbase SDK",
-      items: [
-        {
-          text: "Create a Collection",
-          link: "/create-collection",
-        },
-      ],
-    },
-    {
       text: "Timeline",
       items: [
         {
@@ -39,6 +22,28 @@ export default defineConfig({
         {
           text: "Creating a Moment",
           link: "/moment/create",
+        },
+      ],
+    },
+    {
+      text: "Coinbase SDK",
+      items: [
+        {
+          text: "Create a Collection",
+          link: "/create-collection",
+        },
+      ],
+    },
+    {
+      text: "Protocol",
+      items: [
+        {
+          text: "Setup Actions",
+          link: "/setup-actions",
+        },
+        {
+          text: "Protocol Deployments",
+          link: "/protocol-deployments",
         },
       ],
     },
