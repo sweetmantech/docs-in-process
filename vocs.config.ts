@@ -25,6 +25,15 @@ export default defineConfig({
       ],
     },
     {
+      text: "Timeline",
+      items: [
+        {
+          text: "Quickstart",
+          link: "/feed",
+        },
+      ],
+    },
+    {
       text: "Moment",
       items: [
         {
