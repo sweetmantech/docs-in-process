@@ -129,7 +129,8 @@ The API returns JSON responses. Here's an example success response:
       "uri": "ar://1wMmKuaz-VdxmruOQJuYS-3nfU3zlNKmPNpc79Ou-qM",
       "admin": "0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01",
       "createdAt": "2025-06-07T20:41:35+00:00",
-      "username": "artistname"
+      "username": "artist name",
+      "hidden": false
     },
     {
       "address": "0x317e6E49970b95DD1bF2E7877110f3278CB8f1EA",
@@ -139,7 +140,8 @@ The API returns JSON responses. Here's an example success response:
       "uri": "ar://T5bcXlR7waq_aexj0Sp7SXR5uvwg3qAlMuai9oh6w-U",
       "admin": "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
       "createdAt": "2025-06-07T17:13:07+00:00",
-      "username": ""
+      "username": "artist name",
+      "hidden": false
     }
   ],
   "pagination": {
@@ -155,23 +157,24 @@ The API returns JSON responses. Here's an example success response:
 
 ### Response Object
 
-| Property               | Type   | Description                                  |
-| ---------------------- | ------ | -------------------------------------------- |
-| status                 | string | Status of the request ("success" or "error") |
-| moments                | array  | List of moments in the timeline              |
-| moments[].address      | string | Moment contract address                      |
-| moments[].tokenId      | string | Moment ID                                    |
-| moments[].chainId      | number | Chain ID                                     |
-| moments[].id           | string | UUID of the moment                           |
-| moments[].uri          | string | Metadata URI                                 |
-| moments[].admin        | string | Admin address                                |
-| moments[].createdAt    | string | ISO timestamp when the moment was created    |
-| moments[].username     | string | Username of the admin/artist, if available   |
-| pagination             | object | Pagination metadata for the response         |
-| pagination.total_count | number | Total number of moments available            |
-| pagination.page        | number | Current page number                          |
-| pagination.limit       | number | Number of moments per page                   |
-| pagination.total_pages | number | Total number of pages available              |
+| Property               | Type    | Description                                  |
+| ---------------------- | ------- | -------------------------------------------- |
+| status                 | string  | Status of the request ("success" or "error") |
+| moments                | array   | List of moments in the timeline              |
+| moments[].address      | string  | Moment contract address                      |
+| moments[].tokenId      | string  | Moment ID                                    |
+| moments[].chainId      | number  | Chain ID                                     |
+| moments[].id           | string  | UUID of the moment                           |
+| moments[].uri          | string  | Metadata URI                                 |
+| moments[].admin        | string  | Admin address                                |
+| moments[].createdAt    | string  | ISO timestamp when the moment was created    |
+| moments[].username     | string  | Username of the admin/artist, if available   |
+| moments[].hidden       | boolean | Whether the moment is hidden (admin only)    |
+| pagination             | object  | Pagination metadata for the response         |
+| pagination.total_count | number  | Total number of moments available            |
+| pagination.page        | number  | Current page number                          |
+| pagination.limit       | number  | Number of moments per page                   |
+| pagination.total_pages | number  | Total number of pages available              |
 
 ## Error Response
 
