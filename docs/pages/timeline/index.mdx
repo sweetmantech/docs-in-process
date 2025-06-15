@@ -23,25 +23,28 @@ GET https://inprocess.fun/api/timeline
 | latest  | boolean | No       | true    | Sort by most recent first                                                  |
 | artist  | string  | No       | —       | Filter by admin address (only moments administered by this artist address) |
 | chainId | number  | No       | 8453    | Filter by chain ID (default: Base chain, 8453)                             |
+| hidden  | boolean | No       | false   | If true, includes moments marked as hidden by the admin (default: false)   |
 
-You can filter the timeline to only show moments administered by a specific artist by providing the `artist` address as a query parameter. You can also filter by chain using the `chainId` parameter (default: 8453 for Base).
+You can filter the timeline to only show moments administered by a specific artist by providing the `artist` address as a query parameter. You can also filter by chain using the `chainId` parameter (default: 8453 for Base). To include moments that have been marked as hidden by the admin, set the `hidden` parameter to `true` (defaults to `false`).
 
 ## Request Examples
 
 :::code-group
 
 ```bash [cURL]
-curl -X GET "https://inprocess.fun/api/timeline?chainId=8453&limit=2&page=1&latest=true"
+curl -X GET "https://inprocess.fun/api/timeline?artist=0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01&chainId=8453&limit=2&page=1&latest=true&hidden=true"
 ```
 
 ```python [Python]
 import requests
 
-def get_timeline(page: int = 1, limit: int = 100, latest: bool = True, artist: str = None, chainId: int = 8453):
+def get_timeline(page: int = 1, limit: int = 100, latest: bool = True, artist: str = None, chainId: int = 8453, hidden: bool = False):
     url = "https://inprocess.fun/api/timeline"
     params = {"page": page, "limit": limit, "latest": latest, "chainId": chainId}
     if artist:
         params["artist"] = artist
+    if hidden:
+        params["hidden"] = str(hidden).lower()
     response = requests.get(url, params=params)
     response.raise_for_status()
     return response.json()
@@ -53,7 +56,8 @@ async function getTimeline(
   limit = 100,
   latest = true,
   artist,
-  chainId = 8453
+  chainId = 8453,
+  hidden = false
 ) {
   const params = new URLSearchParams({
     page: page.toString(),
@@ -62,6 +66,7 @@ async function getTimeline(
     chainId: chainId.toString(),
   });
   if (artist) params.set("artist", artist);
+  if (hidden) params.set("hidden", hidden.toString());
   const response = await fetch(`https://inprocess.fun/api/timeline?${params}`);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
@@ -96,7 +101,8 @@ async function getTimeline(
   limit: number = 100,
   latest: boolean = true,
   artist?: string,
-  chainId: number = 8453
+  chainId: number = 8453,
+  hidden: boolean = false
 ): Promise<TimelineResponse> {
   const params = new URLSearchParams({
     page: page.toString(),
@@ -105,6 +111,7 @@ async function getTimeline(
     chainId: chainId.toString(),
   });
   if (artist) params.set("artist", artist);
+  if (hidden) params.set("hidden", hidden.toString());
   const response = await fetch(`https://inprocess.fun/api/timeline?${params}`);
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
