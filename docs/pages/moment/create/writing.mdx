@@ -21,15 +21,19 @@ Send a JSON object with the following fields:
 ```json
 {
   "contract": {
-    "name": "string", // Name of the contract
-    "content": "string" // Content of the contract (e.g., "Hello World")
+    "name": "string" // Name of the contract
   },
-  "salesConfig": {
-    "type": "string",
-    "pricePerToken": "string",
-    "saleStart": 1717200000,
-    "saleEnd": 18446744073709551615
-  }, // Sales configuration object
+  "token": {
+    "tokenContent": "string", // Writing content for the token (e.g., "Hello world")
+    "createReferral": "string", // Referral recipient address
+    "salesConfig": {
+      "type": "string",
+      "pricePerToken": "string",
+      "saleStart": 1717200000,
+      "saleEnd": 18446744073709551615
+    }, // Sales configuration object
+    "mintToCreatorCount": 1 // Number of tokens to mint to creator (usually 1)
+  },
   "account": "string" // Creator's address
 }
 ```
@@ -43,15 +47,19 @@ curl -X POST https://inprocess.fun/api/moment/create/writing \
   -H "Content-Type: application/json" \
   -d '{
     "contract": {
-      "name": "My Writing Moment",
-      "content": "Writing is like wow"
+      "name": "My Writing Moment"
     },
-    "salesConfig": {
-      "type": "fixedPrice",
-      "pricePerToken": "100000000000000000", // 0.1 ETH in wei (18 decimals)
-      "saleStart": 1717200000,
-      "saleEnd": 18446744073709551615
-    },
+    "token": {
+      "tokenContent": "Hello world",
+      "createReferral": "0xReferralAddress",
+      "salesConfig": {
+        "type": "fixedPrice",
+        "pricePerToken": "100000000000000000", // 0.1 ETH in wei (18 decimals)
+        "saleStart": 1717200000,
+        "saleEnd": 18446744073709551615
+      },
+      "mintToCreatorCount": 1
+    }
     "account": "0xCreatorAddress"
   }'
 ```
@@ -63,14 +71,18 @@ url = "https://inprocess.fun/api/moment/create/writing"
 payload = {
     "contract": {
         "name": "My Writing Moment",
-        "content": "Writing is like wow"
     },
-    "salesConfig": {
+    "token": {
+      "tokenContent": "Hello world",
+      "createReferral": "0xReferralAddress",
+      "salesConfig": {
         "type": "fixedPrice",
-        "pricePerToken": "100000000000000000",
+        "pricePerToken": "100000000000000000", // 0.1 ETH in wei (18 decimals)
         "saleStart": 1717200000,
         "saleEnd": 18446744073709551615
-    },
+      },
+      "mintToCreatorCount": 1
+    }
     "account": "0xCreatorAddress"
 }
 response = requests.post(url, json=payload)
@@ -86,13 +98,17 @@ const response = await fetch(
     body: JSON.stringify({
       contract: {
         name: "My Writing Moment",
-        content: "Writing is like wow",
       },
-      salesConfig: {
-        type: "fixedPrice",
-        pricePerToken: "100000000000000000",
-        saleStart: 1717200000,
-        saleEnd: 18446744073709551615,
+      token: {
+        tokenContent: "Hello world",
+        createReferral: "0xReferralAddress",
+        salesConfig: {
+          type: "fixedPrice",
+          pricePerToken: "100000000000000000", // 0.1 ETH in wei (18 decimals)
+          saleStart: 1717200000,
+          saleEnd: 18446744073709551615,
+        },
+        mintToCreatorCount: 1,
       },
       account: "0xCreatorAddress",
     }),
@@ -113,22 +129,30 @@ interface SalesConfig {
 interface CreateWritingMomentRequest {
   contract: {
     name: string;
-    content: string;
   };
-  salesConfig: SalesConfig;
+  token: {
+    tokenContent: string;
+    createReferral: string;
+    salesConfig: SalesConfig;
+    mintToCreatorCount: number;
+  };
   account: string;
 }
 
 const payload: CreateWritingMomentRequest = {
   contract: {
     name: "My Writing Moment",
-    content: "Writing is like wow.",
   },
-  salesConfig: {
-    type: "fixedPrice",
-    pricePerToken: "100000000000000000",
-    saleStart: 1717200000,
-    saleEnd: 18446744073709551615,
+  token: {
+    tokenContent: "Hello world",
+    createReferral: "0xReferralAddress",
+    salesConfig: {
+      type: "fixedPrice",
+      pricePerToken: "100000000000000000", // 0.1 ETH in wei (18 decimals)
+      saleStart: 1717200000,
+      saleEnd: 18446744073709551615,
+    },
+    mintToCreatorCount: 1,
   },
   account: "0xCreatorAddress",
 };
