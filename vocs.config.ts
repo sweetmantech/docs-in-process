@@ -23,6 +23,10 @@ export default defineConfig({
           text: "Creating a Moment",
           link: "/moment/create",
         },
+        {
+          text: "Creating a Writing Moment",
+          link: "/moment/writing/create",
+        },
       ],
     },
     {

@@ -1,0 +1,186 @@
+---
+title: Create a Writing Moment
+---
+
+# Creating a Writing Moment
+
+This page documents the API endpoint for creating a new Writing Moment on the In Process protocol. No signature is required for this endpoint.
+
+> **Note:** You can view the collective timeline by [browsing the timeline](/timeline).
+
+## Endpoint
+
+```
+POST https://inprocess.fun/api/moment/create/writing
+```
+
+## Request Body
+
+Send a JSON object with the following fields:
+
+```json
+{
+  "contract": {
+    "name": "string", // Name of the contract
+    "content": "string" // Content of the contract (e.g., "Hello World")
+  },
+  "salesConfig": {
+    "type": "string",
+    "pricePerToken": "string",
+    "saleStart": 1717200000,
+    "saleEnd": 18446744073709551615
+  }, // Sales configuration object
+  "account": "string" // Creator's address
+}
+```
+
+## Example Request
+
+:::code-group
+
+```bash [cURL]
+curl -X POST https://inprocess.fun/api/moment/create/writing \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract": {
+      "name": "My Writing Moment",
+      "content": "Writing is like wow"
+    },
+    "salesConfig": {
+      "type": "fixedPrice",
+      "pricePerToken": "100000000000000000", // 0.1 ETH in wei (18 decimals)
+      "saleStart": 1717200000,
+      "saleEnd": 18446744073709551615
+    }
+    "account": "0xCreatorAddress"
+  }'
+```
+
+```python [Python]
+import requests
+
+url = "https://inprocess.fun/api/moment/create/writing"
+payload = {
+    "contract": {
+        "name": "My Writing Moment",
+        "content": "Writing is like wow"
+    },
+    "salesConfig": {
+        "type": "fixedPrice",
+        "pricePerToken": "100000000000000000",
+        "saleStart": 1717200000,
+        "saleEnd": 18446744073709551615
+    },
+    "account": "0xCreatorAddress"
+}
+response = requests.post(url, json=payload)
+print(response.json())
+```
+
+```javascript [JavaScript]
+const response = await fetch(
+  "https://inprocess.fun/api/moment/create/writing",
+  {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      contract: {
+        name: "My Writing Moment",
+        content: "Writing is like wow",
+      },
+      salesConfig: {
+        type: "fixedPrice",
+        pricePerToken: "100000000000000000",
+        saleStart: 1717200000,
+        saleEnd: 18446744073709551615,
+      },
+      account: "0xCreatorAddress",
+    }),
+  }
+);
+const data = await response.json();
+console.log(data);
+```
+
+```typescript [TypeScript]
+interface SalesConfig {
+  type: "fixedPrice";
+  pricePerToken: string;
+  saleStart: number;
+  saleEnd: number;
+}
+
+interface CreateWritingMomentRequest {
+  contract: {
+    name: string;
+    content: string;
+  };
+  salesConfig: SalesConfig;
+  account: string;
+}
+
+const payload: CreateWritingMomentRequest = {
+  contract: {
+    name: "My Writing Moment",
+    content: "Writing is like wow.",
+  },
+  salesConfig: {
+    type: "fixedPrice",
+    pricePerToken: "100000000000000000",
+    saleStart: 1717200000,
+    saleEnd: 18446744073709551615,
+  },
+  account: "0xCreatorAddress",
+};
+
+const response = await fetch("https://inprocess.fun/api/moment/create", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
+const data = await response.json();
+console.log(data);
+```
+
+:::
+
+## Example Response
+
+```json
+{
+  "contractAddress": "0xContractAddress",
+  "tokenId": "1",
+  "hash": "0xTransactionHash"
+}
+```
+
+## salesConfig Reference
+
+The `salesConfig` object defines how the writing moment can be sold or minted. The structure depends on the `type` field:
+
+### ERC20 Mint Example
+
+```json
+{
+  "type": "erc20Mint",
+  "pricePerToken": "1000000", // (parsed units, e.g., USDC has 6 decimals)
+  "saleStart": 1717200000, // Unix timestamp (seconds)
+  "saleEnd": 18446744073709551615, // maxUint64 for no end
+  "currency": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48" // USDC address
+}
+```
+
+### Fixed Price Example
+
+```json
+{
+  "type": "fixedPrice",
+  "pricePerToken": "100000000000000000", // (parsed units, e.g., ETH has 18 decimals)
+  "saleStart": 1717200000, // Unix timestamp (seconds)
+  "saleEnd": 18446  744073709551615 // maxUint64 for no end
+  // Note: No 'currency' field for fixedPrice
+}
+```
+
+- The `currency` parameter only exists if `type` is `erc20Mint`.
+- For `fixedPrice`, the sale is denominated in the native token (e.g., ETH), and `currency` is omitted.
