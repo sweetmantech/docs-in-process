@@ -25,7 +25,7 @@ export default defineConfig({
         },
         {
           text: "Creating a Writing Moment",
-          link: "/moment/writing/create",
+          link: "/moment/create/writing",
         },
       ],
     },
