@@ -28,7 +28,7 @@ export default defineConfig({
           link: "/moment/create/writing",
         },
         {
-          text: "SalesConfig Reference",
+          text: "SalesConfig",
           link: "/moment/create/salesConfig",
         },
       ],
