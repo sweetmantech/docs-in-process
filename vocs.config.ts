@@ -31,6 +31,10 @@ export default defineConfig({
           text: "SalesConfig",
           link: "/moment/create/salesConfig",
         },
+        {
+          text: "Index a Moment",
+          link: "/moment/index",
+        },
       ],
     },
     {
