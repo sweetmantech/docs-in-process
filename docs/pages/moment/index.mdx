@@ -1,0 +1,131 @@
+---
+title: Index a Moment
+---
+
+# Indexing a Moment
+
+This page documents the API endpoint for **manually indexing or re-indexing** an existing Moment on the In Process protocol. While the protocol includes an automatic indexer, developers can use this endpoint to ensure that any Moment that was missed—or whose on-chain metadata has changed—is up-to-date in the In Process database.
+
+> **Tip:** If you want to create a brand-new Moment, see the [Create a Moment](/moment/create) docs instead.
+
+## Endpoint
+
+```http
+POST https://inprocess.fun/api/moment/index
+```
+
+## Request Body
+
+Send a JSON object with the following fields:
+
+```json
+{
+  "address": "string", // Moment contract address
+  "tokenId": "string", // Token ID to re-index (usually "0")
+  "chainId": 8453 // (optional) Chain ID (default: 8453 for Base)
+}
+```
+
+### Body Parameters
+
+| Name    | Type   | Required | Default | Description                                 |
+| ------- | ------ | -------- | ------- | ------------------------------------------- |
+| address | string | Yes      | —       | The contract address of the Moment to index |
+| tokenId | string | Yes      | —       | The token ID of the Moment to index         |
+| chainId | number | No       | 8453    | Chain ID where the contract lives           |
+
+## Example Requests
+
+:::code-group
+
+```bash [cURL]
+curl -X POST https://inprocess.fun/api/moment/index \
+  -H "Content-Type: application/json" \
+  -d '{
+    "address": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+    "tokenId": "0",
+    "chainId": 8453
+  }'
+```
+
+```python [Python]
+import requests
+
+url = "https://inprocess.fun/api/moment/index"
+payload = {
+    "address": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+    "tokenId": "0",
+    "chainId": 8453
+}
+response = requests.post(url, json=payload)
+print(response.json())
+```
+
+```javascript [JavaScript]
+const response = await fetch("https://inprocess.fun/api/moment/index", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    address: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+    tokenId: "0",
+    chainId: 8453,
+  }),
+});
+const data = await response.json();
+console.log(data);
+```
+
+```typescript [TypeScript]
+interface IndexMomentRequest {
+  address: string;
+  tokenId: string;
+  chainId?: number;
+}
+
+const payload: IndexMomentRequest = {
+  address: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+  tokenId: "0",
+  chainId: 8453,
+};
+
+const response = await fetch("https://inprocess.fun/api/moment/index", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
+const data = await response.json();
+```
+
+````
+
+:::
+
+## Example Success Response
+
+```json
+{
+  "status": "success",
+  "message": "Moment indexed",
+  "moment": {
+    "address": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+    "tokenId": "0",
+    "chainId": 8453,
+    "id": "bceddfb3-28f2-49f3-8669-73a813a06b90",
+    "uri": "ar://1wMmKuaz-VdxmruOQJuYS-3nfU3zlNKmPNpc79Ou-qM",
+    "admin": "0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01",
+    "createdAt": "2025-06-07T20:41:35+00:00",
+    "updatedAt": "2025-06-07T21:00:12+00:00"
+  }
+}
+````
+
+## Example Error Response
+
+If the contract or token cannot be found (or another error occurs) the API returns:
+
+```json
+{
+  "status": "error",
+  "message": "...error message..."
+}
+```
