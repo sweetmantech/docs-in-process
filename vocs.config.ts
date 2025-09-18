@@ -20,6 +20,10 @@ export default defineConfig({
       text: "Moment",
       items: [
         {
+          text: "Upload to Arweave",
+          link: "/upload-to-arweave",
+        },
+        {
           text: "Creating a Moment",
           link: "/moment/create",
         },
