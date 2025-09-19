@@ -11,7 +11,7 @@ export default defineConfig({
       text: "Timelines",
       items: [
         {
-          text: "Browsing the Timeline",
+          text: "Browsing the Timelines",
           link: "/timeline",
         },
       ],
