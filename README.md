@@ -4,7 +4,7 @@
 
 ## ✨ Overview
 
-In Process is an onchain collective timeline for artists. It's a protocol for artists to create, share, and monetize their moments. This documentation site provides comprehensive guides for interacting with the In Process protocol.
+In Process is an onchain collective timeline for artists. It's a protocol for artists to create, share, and monetize their moments. This documentation site provides comprehensive guides for interacting with In Process.
 
 ## 🚀 Getting Started
 
@@ -12,6 +12,9 @@ Visit our documentation at [docs-in-process.vercel.app](https://docs-in-process.
 
 ## 🛠️ Key Features
 
+- **Moments API** - Create and manage moments with custom metadata
+- **Timelines API** - Browse and filter moments from the collective timeline
+- **Payments API** - Retrieve payment records with full token and artist details
 - **Protocol Deployments** - Access contract addresses across multiple networks
 - **Setup Actions** - Configure tokens to display correctly on marketplaces
 - **Coinbase SDK Integration** - Create collections with minimal JavaScript and the Coinbase CDP SDK (Wallet V2)
@@ -19,6 +22,9 @@ Visit our documentation at [docs-in-process.vercel.app](https://docs-in-process.
 ## 📚 Documentation Sections
 
 - **Getting Started** - Quick introduction to the platform
+- **Timelines** - Browse and filter moments from the collective timeline
+- **Payments** - Retrieve payment records with full token and artist details
+- **Moments** - Create moments, configure sales settings, and manage your digital art
 - **Protocol Deployments** - Contract addresses for all supported networks
 - **Setup Actions** - Configure your tokens for marketplace visibility
 - **Coinbase SDK** - Create collections with simple JavaScript code
