@@ -18,7 +18,12 @@ export default defineConfig({
     },
     {
       text: "Payments",
-      link: "/payments",
+      items: [
+        {
+          text: "Retrieving Payments",
+          link: "/payments",
+        },
+      ],
     },
     {
       text: "Moments",
