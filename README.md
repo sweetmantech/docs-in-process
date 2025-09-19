@@ -4,7 +4,7 @@
 
 ## ✨ Overview
 
-In Process is a revolutionary platform for artists to create, share, and monetize their digital art onchain. This documentation site provides comprehensive guides for interacting with the In Process protocol.
+In Process is an onchain collective timeline for artists. It's a protocol for artists to create, share, and monetize their moments. This documentation site provides comprehensive guides for interacting with the In Process protocol.
 
 ## 🚀 Getting Started
 
