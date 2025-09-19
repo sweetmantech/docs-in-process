@@ -8,27 +8,32 @@ export default defineConfig({
       link: "/getting-started",
     },
     {
-      text: "Timeline",
+      text: "Timelines",
       items: [
         {
-          text: "Browsing the Timeline",
+          text: "Browsing the Timelines",
           link: "/timeline",
         },
       ],
     },
     {
-      text: "Moment",
+      text: "Payments",
       items: [
         {
-          text: "Upload to Arweave",
-          link: "/upload-to-arweave",
+          text: "Browsing the Payments",
+          link: "/payments",
         },
+      ],
+    },
+    {
+      text: "Moments",
+      items: [
         {
           text: "Creating a Moment",
           link: "/moment/create",
         },
         {
-          text: "Creating a Writing Moment",
+          text: "Creating a Written Moment",
           link: "/moment/create/writing",
         },
         {
@@ -38,6 +43,10 @@ export default defineConfig({
         {
           text: "Index a Moment",
           link: "/moment/index",
+        },
+        {
+          text: "Upload to Arweave",
+          link: "/upload-to-arweave",
         },
       ],
     },
