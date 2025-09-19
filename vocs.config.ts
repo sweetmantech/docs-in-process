@@ -20,7 +20,7 @@ export default defineConfig({
       text: "Payments",
       items: [
         {
-          text: "Retrieving Payments",
+          text: "Browsing the Payments",
           link: "/payments",
         },
       ],
