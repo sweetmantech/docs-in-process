@@ -51,6 +51,15 @@ export default defineConfig({
       ],
     },
     {
+      text: "Notifications",
+      items: [
+        {
+          text: "Browsing the Notifications",
+          link: "/notifications",
+        },
+      ],
+    },
+    {
       text: "Coinbase SDK",
       items: [
         {
