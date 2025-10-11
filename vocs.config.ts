@@ -81,5 +81,14 @@ export default defineConfig({
         },
       ],
     },
+    {
+      text: "Smart Wallet",
+      items: [
+        {
+          text: "Get a Smart Wallet",
+          link: "/smartwallet/get",
+        },
+      ],
+    },
   ],
 });
