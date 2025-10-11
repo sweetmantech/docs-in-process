@@ -9,17 +9,15 @@ This page documents the API endpoint for creating a new Moment on the In Process
 ## Endpoint
 
 ```
-POST https://inprocess.fun/api/smartwallet/get
+GET https://inprocess.fun/api/smartwallet/get?address=0x643d..8d01
 ```
 
-## Request Body
+## Query Parameters
 
-Send a JSON object with the following fields:
+Send the address as a query parameter in the URL:
 
-```json
-{
-  "address": "string" // The address to access the smart wallet
-}
+```
+?address=string // The address to access the smart wallet
 ```
 
 ## Example Request
@@ -27,49 +25,39 @@ Send a JSON object with the following fields:
 :::code-group
 
 ```bash [cURL]
-curl -X POST https://inprocess.fun/api/smartwallet/get \
-  -H "Content-Type: application/json" \
-  -d '{
-    "address": "0x643d..8d01"
-}'
+curl -X GET "https://inprocess.fun/api/smartwallet/get?address=0x643d..8d01" \
+  -H "Content-Type: application/json"
 ```
 
 ```python [Python]
 import requests
 
-url = "https://inprocess.fun/api/smartwallet/get"
-payload = {
-    "address": "0x643d..8d01"
-}
-response = requests.post(url, json=payload)
+url = "https://inprocess.fun/api/smartwallet/get?address=0x643d..8d01"
+response = requests.get(url)
+
 print(response.json())
 ```
 
 ```javascript [JavaScript]
-const response = await fetch("https://inprocess.fun/api/smartwallet/get", {
-  method: "POST",
+const address = "0x643d..8d01";
+const response = await fetch(`https://inprocess.fun/api/smartwallet/get?address=${address}`, {
+  method: "GET",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    address: "0x643d..8d01"
-  }),
 });
 const data = await response.json();
 console.log(data);
 ```
 
 ```typescript [TypeScript]
-interface GetSmartWalletRequest {
+interface GetSmartWalletResponse {
   address: string;
 }
-const payload: GetSmartWalletRequest = {
-  address: "0x643d..8d01"
-};
-const response = await fetch("https://inprocess.fun/api/smartwallet/get", {
-  method: "POST",
+const address = "0x643d..8d01";
+const response = await fetch(`https://inprocess.fun/api/smartwallet/get?address=${address}`, {
+  method: "GET",
   headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload),
 });
-const data = await response.json();
+const data: GetSmartWalletResponse = await response.json();
 console.log(data);
 ```
 
