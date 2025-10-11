@@ -1,0 +1,69 @@
+---
+title: Getting a External Wallet
+---
+
+# Getting a External Wallet
+
+This page documents the API endpoint to get a external wallet associated with smart wallet on the In Process protocol.
+No signature is required for this endpoint.
+
+## Endpoint
+
+```
+GET https://inprocess.fun/api/smartwallet/externalwallet
+```
+
+## Query Parameters
+
+Send the address as a query parameter in the URL:
+
+| Name          | Type   | Required | Default | Description                       |
+| ------------  | ------ | -------- | ------- | --------------------------------- |
+| smart_wallet  | string | Yes      | —       | The address of a smart wallet     |
+
+
+## Example Request
+
+:::code-group
+
+```bash [cURL]
+curl -X GET "https://inprocess.fun/api/smartwallet/externalwallet?smart_wallet=0x643d..8d01"
+```
+
+```python [Python]
+import requests
+params = {}
+params["smart_wallet"] = "0x643d..8d01"
+url = "https://inprocess.fun/api/smartwallet/externalwallet"
+response = requests.get(url, params=params)
+print(response.json())
+```
+
+```javascript [JavaScript]
+const params = new URLSearchParams();
+params.set("smart_wallet", "0x643d..8d01");
+const response = await fetch(`https://inprocess.fun/api/smartwallet/externalwallet?${params}`);
+const data = await response.json();
+console.log(data);
+```
+
+```typescript [TypeScript]
+interface GetExternalWalletResponse {
+  address: string;
+}
+const params = new URLSearchParams();
+params.set("smart_wallet", "0x643d..8d01");
+const response = await fetch(`https://inprocess.fun/api/smartwallet/externalwallet?${params}`);
+const data: GetExternalWalletResponse = await response.json();
+console.log(data);
+```
+
+:::
+
+## Example Response
+
+```json
+{
+  "address": "0x41f1...3d51", // external wallet associated with smart wallet
+}
+```
