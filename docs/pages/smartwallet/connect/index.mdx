@@ -32,7 +32,7 @@ Send a JSON object with the following fields:
 curl -X POST https://inprocess.fun/api/smartwallet/connect \
   -H "Content-Type: application/json" \
   -d '{
-    "smart_wallet": "0x1a4A...5F0A,
+    "smart_wallet": "0x1a4A...5F0A",
     "external_wallet": "0x364d...272e"
   }'
 ```
@@ -54,7 +54,7 @@ const response = await fetch("https://inprocess.fun/api/smartwallet/connect", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    "smart_wallet": "0x1a4A...5F0A,
+    "smart_wallet": "0x1a4A...5F0A",
     "external_wallet": "0x364d...272e"
   }),
 });
@@ -69,7 +69,7 @@ interface ConnectExternalWalletRequest {
 }
 
 const payload: ConnectExternalWalletRequest = {
- "smart_wallet": "0x1a4A...5F0A,
+ "smart_wallet": "0x1a4A...5F0A",
  "external_wallet": "0x364d...272e"
 };
 
