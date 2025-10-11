@@ -88,6 +88,10 @@ export default defineConfig({
           text: "Get a Smart Wallet",
           link: "/smartwallet/get",
         },
+        {
+          text: "Get a External Wallet",
+          link: "/smartwallet/externalwallet",
+        },
       ],
     },
   ],
