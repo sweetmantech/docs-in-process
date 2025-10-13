@@ -20,7 +20,7 @@ Send a JSON object with the following fields:
 ```json
 {
   token: {
-    tokenId: string; // free token id
+    tokenId: number; // free token id
     tokenContractAddress: string; // token contract address
   };
   account: string; // address to access a smart wallet
@@ -131,6 +131,6 @@ console.log(data);
 ```json
 {
   "success": true,
-  transactionHash: "0x640F...4E7C"
+  "transactionHash": "0x640F...4E7C"
 }
 ```
