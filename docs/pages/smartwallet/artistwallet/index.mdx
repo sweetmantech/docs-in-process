@@ -26,13 +26,13 @@ Send the smart wallet address as a query parameter in the URL:
 :::code-group
 
 ```bash [cURL]
-curl -X GET "https://inprocess.fun/api/smartwallet/artistwallet?smart_wallet=0x643D962630E35B49340C23079fBac7D8546d8D01"
+curl -X GET "https://inprocess.fun/api/smartwallet/artistwallet?smart_wallet=0xc6fc6bcae60cbb0ad41e21bb18b7f37b56da2571"
 ```
 
 ```python [Python]
 import requests
 params = {}
-params["smart_wallet"] = "0x643D962630E35B49340C23079fBac7D8546d8D01"
+params["smart_wallet"] = "0xc6fc6bcae60cbb0ad41e21bb18b7f37b56da2571"
 url = "https://inprocess.fun/api/smartwallet/artistwallet"
 response = requests.get(url, params=params)
 print(response.json())
@@ -40,7 +40,7 @@ print(response.json())
 
 ```javascript [JavaScript]
 const params = new URLSearchParams();
-params.set("smart_wallet", "0x643D962630E35B49340C23079fBac7D8546d8D01");
+params.set("smart_wallet", "0xc6fc6bcae60cbb0ad41e21bb18b7f37b56da2571");
 const response = await fetch(`https://inprocess.fun/api/smartwallet/artistwallet?${params}`);
 const data = await response.json();
 console.log(data);
@@ -51,7 +51,7 @@ interface GetArtistWalletResponse {
   address: string;
 }
 const params = new URLSearchParams();
-params.set("smart_wallet", "0x643D962630E35B49340C23079fBac7D8546d8D01");
+params.set("smart_wallet", "0xc6fc6bcae60cbb0ad41e21bb18b7f37b56da2571");
 const response = await fetch(`https://inprocess.fun/api/smartwallet/artistwallet?${params}`);
 const data: GetArtistWalletResponse = await response.json();
 console.log(data);
@@ -63,6 +63,6 @@ console.log(data);
 
 ```json
 {
-  "address": "0x41f1...3d51", // artist wallet address associated with smart wallet
+  "address": "0x51027631b9def86e088c33368ec4e3a4be0ad264", // artist wallet address associated with smart wallet
 }
 ```
