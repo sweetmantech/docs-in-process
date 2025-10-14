@@ -99,11 +99,7 @@ export default defineConfig({
         {
           text: "Disconnect a External Wallet",
           link: "/smartwallet/disconnect",
-        },
-        {
-          text: "Comment using Smart Wallet",
-          link: "/smartwallet/comment",
-        },
+        }
       ],
     },
   ],
