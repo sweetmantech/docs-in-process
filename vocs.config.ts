@@ -82,24 +82,21 @@ export default defineConfig({
       ],
     },
     {
+      text: "Artist Wallet",
+      items: [
+        {
+          text: "Get an Artist Wallet",
+          link: "/artistwallet",
+        }
+      ],
+    },
+    {
       text: "Smart Wallet",
       items: [
         {
           text: "Get a Smart Wallet",
           link: "/smartwallet/get",
         },
-        {
-          text: "Get a External Wallet",
-          link: "/smartwallet/externalwallet",
-        },
-        {
-          text: "Connect a External Wallet",
-          link: "/smartwallet/connect",
-        },
-        {
-          text: "Disconnect a External Wallet",
-          link: "/smartwallet/disconnect",
-        }
       ],
     },
   ],
