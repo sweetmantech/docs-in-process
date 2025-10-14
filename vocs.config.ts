@@ -94,7 +94,7 @@ export default defineConfig({
         },
         {
           text: "Disconnect a Social Wallet",
-          link: "/artistwallet/disconnect",
+          link: "/artists/wallets/disconnect",
         }
       ],
     },
