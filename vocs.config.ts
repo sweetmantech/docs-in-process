@@ -87,6 +87,10 @@ export default defineConfig({
         {
           text: "Get an Artist Wallet",
           link: "/artistwallet",
+        },
+        {
+          text: "Connect a Social Wallet",
+          link: "/artistwallet/connect",
         }
       ],
     },
