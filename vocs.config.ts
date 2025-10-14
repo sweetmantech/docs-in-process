@@ -82,11 +82,11 @@ export default defineConfig({
       ],
     },
     {
-      text: "Artist Wallet",
+      text: "Artists",
       items: [
         {
           text: "Get an Artist Wallet",
-          link: "/artistwallet",
+          link: "/artists/wallets",
         },
         {
           text: "Connect a Social Wallet",
