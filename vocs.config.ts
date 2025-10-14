@@ -89,8 +89,8 @@ export default defineConfig({
           link: "/smartwallet/get",
         },
         {
-          text: "Get a External Wallet",
-          link: "/smartwallet/externalwallet",
+          text: "Get an Artist Wallet",
+          link: "/smartwallet/artistwallet",
         },
         {
           text: "Connect a External Wallet",
