@@ -4,7 +4,7 @@ title: Getting a Smart Wallet
 
 # Getting a Smart Wallet
 
-This page documents the API endpoint to get a smart wallet connected to social wallets (such as Privy social wallet, Farcaster wallet, and Base wallet) on the In Process protocol.
+This page documents the API endpoint to get a smart wallet connected to an artist wallet on the In Process protocol.
 
 
 ## Endpoint
@@ -19,7 +19,7 @@ Send the address as a query parameter in the URL:
 
 | Name              | Type   | Required | Default | Description                                              |
 | ----------------  | ------ | -------- | ------- | -----------------------------------------------------    |
-| socialWallet      | string | Yes      | —       | The social wallet address to access a smart wallet       |
+| artist_wallet     | string | Yes      | —       | The artist wallet address to get a smart wallet          |
 
 
 ## Example Request
@@ -27,13 +27,13 @@ Send the address as a query parameter in the URL:
 :::code-group
 
 ```bash [cURL]
-curl -X GET "https://inprocess.fun/api/smartwallet?socialWallet=0x643D962630E35B49340C23079fBac7D8546d8D01"
+curl -X GET "https://inprocess.fun/api/smartwallet?artist_wallet=0x51027631B9DEF86e088C33368eC4E3A4BE0aD264"
 ```
 
 ```python [Python]
 import requests
 params = {}
-params["socialWallet"] = "0x643D962630E35B49340C23079fBac7D8546d8D01"
+params["artist_wallet"] = "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264"
 url = "https://inprocess.fun/api/smartwallet"
 response = requests.get(url, params=params)
 print(response.json())
@@ -41,7 +41,7 @@ print(response.json())
 
 ```javascript [JavaScript]
 const params = new URLSearchParams();
-params.set("socialWallet", "0x643D962630E35B49340C23079fBac7D8546d8D01");
+params.set("artist_wallet", "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264");
 const response = await fetch(`https://inprocess.fun/api/smartwallet?${params}`);
 const data = await response.json();
 console.log(data);
@@ -49,10 +49,10 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface GetSmartWalletResponse {
-  socialWallet: string;
+  address: string;
 }
 const params = new URLSearchParams();
-params.set("socialWallet", "0x643D962630E35B49340C23079fBac7D8546d8D01");
+params.set("artist_wallet", "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264");
 const response = await fetch(`https://inprocess.fun/api/smartwallet?${params}`);
 const data: GetSmartWalletResponse = await response.json();
 console.log(data);
@@ -64,6 +64,6 @@ console.log(data);
 
 ```json
 {
-  "address": "0xc6fc6bcae60cbb0ad41e21bb18b7f37b56da2571", // smart wallet address
+  "address": "0x06a1bb8d0dccf8c7d7bad3a28352ba0a5d3a3df3", // smart wallet address connected to artist wallet
 }
 ```
