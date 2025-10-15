@@ -18,8 +18,7 @@ Send a JSON object with the following fields:
 
 ```json
 {
-  "artist_wallet": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
-  "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01",
+  "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01"
 }
 ```
 
@@ -31,8 +30,7 @@ Send a JSON object with the following fields:
 curl -X DELETE https://inprocess.fun/api/artists/wallets \
   -H "Content-Type: application/json" \
   -d '{
-    "artist_wallet": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
-    "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01",
+    "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01"
   }'
 ```
 
@@ -41,8 +39,7 @@ import requests
 
 url = "https://inprocess.fun/api/artists/wallets"
 payload = {
-  "artist_wallet": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
-  "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01",
+  "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01"
 }
 response = requests.delete(url, json=payload)
 print(response.json())
@@ -53,8 +50,7 @@ const response = await fetch("https://inprocess.fun/api/artists/wallets", {
   method: "delete",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    "artist_wallet": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
-    "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01",
+    "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01"
   }),
 });
 const data = await response.json();
@@ -63,13 +59,11 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface DisconnectSocialWalletRequest {
-  artist_wallet: string;
   social_wallet: string;
 }
 
 const payload: DisconnectSocialWalletRequest = {
-  "artist_wallet": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
-  "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01",
+  "social_wallet": "0x643D962630E35B49340C23079fBac7D8546d8D01"
 };
 
 const response = await fetch("https://inprocess.fun/api/artists/wallets", {
