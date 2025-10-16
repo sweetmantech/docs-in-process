@@ -37,6 +37,10 @@ export default defineConfig({
           link: "/moment/create/writing",
         },
         {
+          text: "Airdrop a Moment",
+          link: "/moment/airdrop",
+        },
+        {
           text: "SalesConfig",
           link: "/moment/create/salesConfig",
         },
