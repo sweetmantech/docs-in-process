@@ -18,7 +18,7 @@ Send a JSON object with the following fields:
 
 ```json
 {
-  "offset": 0, (optional) // Pagination offset (default: 0)  
+  "offset": 0, // (optional)  Pagination offset (default: 0)  
   "address": "string", // Moment contract address
   "tokenId": 1, // (optional) Token ID (default: 1)
   "chainId": 8453 // (optional) Chain ID (default: 8453 for Base)
@@ -53,9 +53,9 @@ import requests
 
 url = "https://inprocess.fun/api/moment/comments"
 payload = {
-    "address": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-    "tokenId": 1,
-    "chainId": 84532
+  "address": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  "tokenId": 1,
+  "chainId": 84532
 }
 response = requests.post(url, json=payload)
 print(response.json())
@@ -105,11 +105,13 @@ const data = await response.json();
 
 ```json
 {
-  "comments": {
-    "sender": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
-    "comment": "in*process!!!",
-    "commented_at": 175265489513
-  },
+  "comments": [
+    {
+      "sender": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+      "comment": "in*process!!!",
+      "commented_at": 175265489513
+    }
+  ],
   "next_offset": 22643791
 }
 ```
