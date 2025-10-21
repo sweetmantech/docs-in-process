@@ -1,0 +1,114 @@
+---
+title: Get Comments
+---
+
+# Get Comments
+
+This page documents the API endpoint to get comments on the In Process protocol.
+
+## Endpoint
+
+```http
+POST https://inprocess.fun/api/moment/comments
+```
+
+## Request Body
+
+Send a JSON object with the following fields:
+
+```json
+{
+  "offset": 0, (optional) // Pagination offset (default: 0)  
+  "address": "string", // Moment contract address
+  "tokenId": 1, // (optional) Token ID (default: 1)
+  "chainId": 8453 // (optional) Chain ID (default: 8453 for Base)
+}
+```
+
+### Body Parameters
+
+| Name    | Type   | Required | Default | Description                                 |
+| ------- | ------ | -------- | ------- | ------------------------------------------- |
+| offset  | number | Yes      | —       | The offset of pagination                    |
+| address | string | Yes      | —       | The contract address of the Moment          |
+| tokenId | number | No       | 1       | The token ID                                |
+| chainId | number | No       | 8453    | Chain ID where the contract lives           |
+
+## Example Requests
+
+:::code-group
+
+```bash [cURL]
+curl -X POST https://inprocess.fun/api/moment/comments \
+  -H "Content-Type: application/json" \
+  -d '{
+    "address": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    "tokenId": 1,
+    "chainId": 84532
+  }'
+```
+
+```python [Python]
+import requests
+
+url = "https://inprocess.fun/api/moment/comments"
+payload = {
+    "address": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    "tokenId": 1,
+    "chainId": 84532
+}
+response = requests.post(url, json=payload)
+print(response.json())
+```
+
+```javascript [JavaScript]
+const response = await fetch("https://inprocess.fun/api/moment/comments", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    address: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    tokenId: 1,
+    chainId: 84532,
+  }),
+});
+const data = await response.json();
+console.log(data);
+```
+
+```typescript [TypeScript]
+interface CommentsRequest {
+  address: string;
+  tokenId?: number;
+  chainId?: number;
+}
+
+const payload: CommentsRequest = {
+  address: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  tokenId: 1,
+  chainId: 84532,
+};
+
+const response = await fetch("https://inprocess.fun/api/moment/comments", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
+});
+const data = await response.json();
+```
+
+````
+
+:::
+
+## Example Response
+
+```json
+{
+  "comments": {
+    "sender": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+    "comment": "in*process!!!",
+    "commented_at": 175265489513
+  },
+  "next_offset": 22643791
+}
+```
