@@ -9,98 +9,76 @@ This page documents the API endpoint for retrieving Moment comments on the In Pr
 ## Endpoint
 
 ```http
-POST https://inprocess.fun/api/moment/comments
+GET https://inprocess.fun/api/moment/comments
 ```
 
-## Request Body
+## Query Parameters
 
-Send a JSON object with the following fields:
+The following query parameters are required:
 
-```json
-{
-  "moment": {
-    "contractAddress": string, // Moment contract address
-    "tokenId": "1" // TokenId 
-  },
-  "chainId": number, // Chain ID
-  "offset": 0 // Pagination offset
-}
-```
+- `contractAddress` (string): Moment contract address
+- `tokenId` (string): Token ID
+- `chainId` (number): Chain ID
+- `offset` (number): Pagination offset (optional, defaults to 0)
 
 ## Example Requests
 
 :::code-group
 
 ```bash [cURL]
-curl -X POST https://inprocess.fun/api/moment/comments \
-  -H "Content-Type: application/json" \
-  -d '{
-    "moment": {
-      "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-      "tokenId": "1"
-    },
-    "chainId": 84532,
-    "offset": 0
-  }'
+curl "https://inprocess.fun/api/moment/comments?contractAddress=0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E&tokenId=1&chainId=84532&offset=0"
 ```
 
 ```python [Python]
 import requests
 
 url = "https://inprocess.fun/api/moment/comments"
-payload = {
-  "moment": {
-    "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-    "tokenId": "1"
-  },
+params = {
+  "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  "tokenId": "1",
   "chainId": 84532,
   "offset": 0
 }
-response = requests.post(url, json=payload)
+response = requests.get(url, params=params)
 print(response.json())
 ```
 
 ```javascript [JavaScript]
-const response = await fetch("https://inprocess.fun/api/moment/comments", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    "moment": {
-      "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-      "tokenId": "1"
-    },
-    "chainId": 84532,
-    "offset": 0
-  }),
+const params = new URLSearchParams({
+  contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  tokenId: "1",
+  chainId: "84532",
+  offset: "0"
 });
+
+const response = await fetch(`https://inprocess.fun/api/moment/comments?${params}`);
 const data = await response.json();
 console.log(data);
 ```
 
 ```typescript [TypeScript]
-interface CommentsRequest {
-  offset: number;
-  moment: {
-    contractAddress: string,
-    tokenId: string
-  };
+interface CommentsQueryParams {
+  contractAddress: string;
+  tokenId: string;
   chainId: number;
+  offset?: number;
 }
 
-const payload: CommentsRequest = {
-  "moment": {
-    "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-    "tokenId": "1"
-  },
-  "chainId": 84532,
-  "offset": 0
+const params: CommentsQueryParams = {
+  contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  tokenId: "1",
+  chainId: 84532,
+  offset: 0
 };
 
-const response = await fetch("https://inprocess.fun/api/moment/comments", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify(payload),
+const queryString = new URLSearchParams({
+  contractAddress: params.contractAddress,
+  tokenId: params.tokenId,
+  chainId: params.chainId.toString(),
+  offset: params.offset?.toString() || "0"
 });
+
+const response = await fetch(`https://inprocess.fun/api/moment/comments?${queryString}`);
 const data = await response.json();
 ```
 
