@@ -28,7 +28,8 @@ Send a JSON object with the following fields:
 
 ```json
 {
-  "artist_address": "string" // Artist's wallet address
+  "artist_address": "string", // Artist's wallet address
+  "key_name": "string" // Name for the API key
 }
 ```
 
@@ -37,6 +38,7 @@ Send a JSON object with the following fields:
 | Name           | Type   | Required | Description                    |
 | -------------- | ------ | -------- | ------------------------------ |
 | artist_address | string | Yes      | The artist's wallet address    |
+| key_name       | string | Yes      | A descriptive name for the API key |
 
 ## Example Requests
 
@@ -47,7 +49,8 @@ curl -X POST https://inprocess.fun/artists/api-keys \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer your_access_token_here" \
   -d '{
-    "artist_address": "0x1234567890123456789012345678901234567890"
+    "artist_address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
+    "key_name": "My Production API Key"
   }'
 ```
 
@@ -60,7 +63,8 @@ headers = {
     "Authorization": "Bearer your_access_token_here"
 }
 payload = {
-    "artist_address": "0x1234567890123456789012345678901234567890"
+    "artist_address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
+    "key_name": "My Production API Key"
 }
 response = requests.post(url, json=payload, headers=headers)
 print(response.json())
@@ -74,7 +78,8 @@ const response = await fetch("https://inprocess.fun/artists/api-keys", {
     "Authorization": "Bearer your_access_token_here"
   },
   body: JSON.stringify({
-    "artist_address": "0x1234567890123456789012345678901234567890"
+    "artist_address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
+    "key_name": "My Production API Key"
   })
 });
 const data = await response.json();
@@ -84,10 +89,12 @@ console.log(data);
 ```typescript [TypeScript]
 interface CreateApiKeyRequest {
   artist_address: string;
+  key_name: string;
 }
 
 const payload: CreateApiKeyRequest = {
-  artist_address: "0x1234567890123456789012345678901234567890"
+  artist_address: "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
+  key_name: "My Production API Key"
 };
 
 const response = await fetch("https://inprocess.fun/artists/api-keys", {
