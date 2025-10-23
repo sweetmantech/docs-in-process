@@ -107,7 +107,11 @@ export default defineConfig({
         {
           text: "Disconnect a Social Wallet",
           link: "/artists/wallets/disconnect",
-        }
+        },
+        {
+          text: "Create an Artist API Key",
+          link: "/artists/api-keys/create",
+        },
       ],
     },
     {
