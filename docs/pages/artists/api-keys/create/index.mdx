@@ -49,7 +49,7 @@ curl -X POST https://inprocess.fun/artists/api-keys \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer your_access_token_here" \
   -d '{
-    "artist_address": "0x1234567890123456789012345678901234567890",
+    "artist_address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
     "key_name": "My Production API Key"
   }'
 ```
@@ -63,7 +63,7 @@ headers = {
     "Authorization": "Bearer your_access_token_here"
 }
 payload = {
-    "artist_address": "0x1234567890123456789012345678901234567890",
+    "artist_address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
     "key_name": "My Production API Key"
 }
 response = requests.post(url, json=payload, headers=headers)
@@ -78,7 +78,7 @@ const response = await fetch("https://inprocess.fun/artists/api-keys", {
     "Authorization": "Bearer your_access_token_here"
   },
   body: JSON.stringify({
-    "artist_address": "0x1234567890123456789012345678901234567890",
+    "artist_address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
     "key_name": "My Production API Key"
   })
 });
@@ -93,7 +93,7 @@ interface CreateApiKeyRequest {
 }
 
 const payload: CreateApiKeyRequest = {
-  artist_address: "0x1234567890123456789012345678901234567890",
+  artist_address: "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264",
   key_name: "My Production API Key"
 };
 
