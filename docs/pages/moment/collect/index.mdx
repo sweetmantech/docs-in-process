@@ -12,6 +12,21 @@ This page documents the API endpoint to collect a Moment on the In Process proto
 POST https://inprocess.fun/api/moment/collect
 ```
 
+## Authentication
+
+Include an API key in the x-api-key header for authorization:
+
+```http
+x-api-key: <artist_api_key>
+```
+
+<details>
+<summary>Show more</summary>
+
+See [Create an Artist API Key](/artists/api-keys/create) for how to create API keys.
+
+</details>
+
 ## Request Body
 
 Send a JSON object with the following fields:
@@ -35,6 +50,7 @@ Send a JSON object with the following fields:
 ```bash [cURL]
 curl -X POST https://inprocess.fun/api/moment/collect \
   -H "Content-Type: application/json" \
+  -H "x-api-key: art_sk_3fnm4...f6w4" \
   -d '{
     "token": {
       "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
@@ -50,6 +66,10 @@ curl -X POST https://inprocess.fun/api/moment/collect \
 import requests
 
 url = "https://inprocess.fun/api/moment/collect"
+headers = {
+  "Content-Type": "application/json",
+  "x-api-key": "art_sk_3fnm4...f6w4"
+}
 payload = {
   "token": {
     "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
@@ -59,14 +79,17 @@ payload = {
   "amount": 1,
   "comment": "in•process!!!"
 }
-response = requests.post(url, json=payload)
+response = requests.post(url, json=payload, headers=headers)
 print(response.json())
 ```
 
 ```javascript [JavaScript]
 const response = await fetch("https://inprocess.fun/api/moment/collect", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
+  headers: { 
+    "Content-Type": "application/json",
+    "x-api-key": "art_sk_3fnm4...f6w4"
+  },
   body: JSON.stringify({
     "token": {
       "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
@@ -104,7 +127,10 @@ const payload: CollectMomentRequest = {
 
 const response = await fetch("https://inprocess.fun/api/moment/collect", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
+  headers: { 
+    "Content-Type": "application/json",
+    "x-api-key": "art_sk_3fnm4...f6w4"
+  },
   body: JSON.stringify(payload),
 });
 const data = await response.json();
