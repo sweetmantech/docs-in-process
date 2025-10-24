@@ -12,17 +12,31 @@ This page documents the API endpoint to collect a Moment on the In Process proto
 POST https://inprocess.fun/api/moment/collect
 ```
 
+## Authentication
+
+Include an API key in the x-api-key header for authorization:
+
+```http
+x-api-key: <artist_api_key>
+```
+
+<details>
+<summary>Show more</summary>
+
+See [Create an Artist API Key](/artists/api-keys/create) for how to create API keys.
+
+</details>
+
 ## Request Body
 
 Send a JSON object with the following fields:
 
 ```json
 {
-  "token": {
-    "tokenContractAddress": string, // Collection address
-    "tokenId": string // TokenId of collection
+  "moment": {
+    "contractAddress": string, // Moment address
+    "tokenId": string // TokenId of moment
   },
-  "account": string, // Social wallet address or artist wallet address
   "amount": number, // Amount to be collected
   "comment": string // Comment
 }
@@ -35,12 +49,12 @@ Send a JSON object with the following fields:
 ```bash [cURL]
 curl -X POST https://inprocess.fun/api/moment/collect \
   -H "Content-Type: application/json" \
+  -H "x-api-key: art_sk_3fnm4...f6w4" \
   -d '{
-    "token": {
-      "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    "moment": {
+      "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
       "tokenId": "1"
     },
-    "account": "0x323e8bcb41ae2454c3f4899e094c599aab6b84bc",
     "amount": 1,
     "comment": "in•process!!!"
   }'
@@ -50,29 +64,34 @@ curl -X POST https://inprocess.fun/api/moment/collect \
 import requests
 
 url = "https://inprocess.fun/api/moment/collect"
+headers = {
+  "Content-Type": "application/json",
+  "x-api-key": "art_sk_3fnm4...f6w4"
+}
 payload = {
-  "token": {
-    "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  "moment": {
+    "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
     "tokenId": "1"
   },
-  "account": "0x323e8bcb41ae2454c3f4899e094c599aab6b84bc",
   "amount": 1,
   "comment": "in•process!!!"
 }
-response = requests.post(url, json=payload)
+response = requests.post(url, json=payload, headers=headers)
 print(response.json())
 ```
 
 ```javascript [JavaScript]
 const response = await fetch("https://inprocess.fun/api/moment/collect", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
+  headers: { 
+    "Content-Type": "application/json",
+    "x-api-key": "art_sk_3fnm4...f6w4"
+  },
   body: JSON.stringify({
-    "token": {
-      "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    "moment": {
+      "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
       "tokenId": "1"
     },
-    "account": "0x323e8bcb41ae2454c3f4899e094c599aab6b84bc",
     "amount": 1,
     "comment": "in•process!!!"
   }),
@@ -83,28 +102,29 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface CollectMomentRequest {
-  "token": {
-    "tokenContractAddress": string,
+  "moment": {
+    "contractAddress": string,
     "tokenId": string
   },
-  "account": string,
   "amount": number,
   "comment": string
 }
 
 const payload: CollectMomentRequest = {
-  "token": {
-    "tokenContractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  "moment": {
+    "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
     "tokenId": "1"
   },
-  "account": "0x323e8bcb41ae2454c3f4899e094c599aab6b84bc",
   "amount": 1,
   "comment": "in•process!!!"
 };
 
 const response = await fetch("https://inprocess.fun/api/moment/collect", {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
+  headers: { 
+    "Content-Type": "application/json",
+    "x-api-key": "art_sk_3fnm4...f6w4"
+  },
   body: JSON.stringify(payload),
 });
 const data = await response.json();
