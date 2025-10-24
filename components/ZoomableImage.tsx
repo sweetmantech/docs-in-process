@@ -54,14 +54,19 @@ export function ZoomableImage({ src, alt, className = '' }: ZoomableImageProps) 
     position: 'absolute',
     top: '16px',
     right: '16px',
+    width: '48px',
+    height: '48px',
     borderRadius: '50%',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    padding: '12px',
     color: 'white',
     border: 'none',
     cursor: 'pointer',
     fontSize: '20px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     transition: 'all 0.2s ease',
+    outline: 'none',
   };
 
   const regularImageStyle: React.CSSProperties = {
