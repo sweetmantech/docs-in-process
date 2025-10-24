@@ -14,7 +14,7 @@ To collect moments and airdrop moments programmatically, you'll need to create a
 
 ### Step 1: Access the API Keys Management Page
 
-1. Navigate to the [In Process API Keys Management Site](https://inprocess.fun/manage/api-keys)
+1. Navigate to the [In Process API Keys Management Page](https://inprocess.fun/manage/api-keys)
 2. Sign in with email if you haven't already
 
 ### Step 2: Create Your API Key
@@ -31,12 +31,12 @@ To collect moments and airdrop moments programmatically, you'll need to create a
 Once you have your API key, you can use it to authenticate your requests to the In Process API:
 
 ```bash
-curl -X GET https://inprocess.fun/api/{endpoint} \
+curl -X GET https://inprocess.fun/api/moment/collect \
   -H "x-api-key: art_sk_3fnm4...f6w4" \
 ```
 
 ### Next Steps
 
-With API key ready, we can now:
+With your API key ready, you can now:
 - [Collect moments](/moment/collect) - Use API key to collect moments programmatically
 - [Airdrop moments](/moment/airdrop) - Use API key to airdrop moments to users
