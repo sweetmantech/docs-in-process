@@ -38,7 +38,7 @@ export function ZoomableImage({ src, alt, className = '' }: ZoomableImageProps) 
       
       {isZoomed && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
           onClick={() => setIsZoomed(false)}
           onKeyDown={handleKeyDown}
           tabIndex={-1}
@@ -49,11 +49,11 @@ export function ZoomableImage({ src, alt, className = '' }: ZoomableImageProps) 
             <img
               src={src}
               alt={alt}
-              className="max-h-full max-w-full object-contain"
+              className="max-h-full max-w-full object-contain shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             />
             <button
-              className="absolute top-4 right-4 rounded-full bg-black bg-opacity-50 p-2 text-white hover:bg-opacity-75"
+              className="absolute top-4 right-4 rounded-full bg-black bg-opacity-70 p-3 text-white hover:bg-opacity-90 transition-all duration-200 text-xl"
               onClick={() => setIsZoomed(false)}
               aria-label="Close zoomed image"
             >
