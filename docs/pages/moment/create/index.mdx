@@ -38,7 +38,7 @@ Send a JSON object with the following fields:
   },
   "splits": {
     "recipients": ["string"], // Array of recipient addresses
-    "percentAllocations": [number] // Array of allocation percentages in basis points (must sum to 10000)
+    "percentAllocations": [number] // Array of allocation percentages (0-100, must sum to 100)
   }, // Optional: Splits configuration for revenue sharing
   "account": "string" // Creator's address
 }
@@ -70,7 +70,7 @@ curl -X POST https://inprocess.fun/api/moment/create \
     },
     "splits": {
       "recipients": ["0xRecipient1", "0xRecipient2"],
-      "percentAllocations": [6000, 4000] // Optional: 60% and 40% (in basis points)
+      "percentAllocations": [60, 40] // Optional: 60% and 40%
     },
     "account": "0xCreatorAddress"
   }'
@@ -99,7 +99,7 @@ payload = {
     },
     "splits": {
         "recipients": ["0xRecipient1", "0xRecipient2"],
-        "percentAllocations": [6000, 4000]  # Optional: 60% and 40% (in basis points)
+        "percentAllocations": [60, 40]  # Optional: 60% and 40%
     },
     "account": "0xCreatorAddress"
 }
@@ -131,7 +131,7 @@ const response = await fetch("https://inprocess.fun/api/moment/create", {
     splits: {
       // Optional: Configure revenue sharing splits
       recipients: ["0xRecipient1", "0xRecipient2"],
-      percentAllocations: [6000, 4000], // 60% and 40% (in basis points)
+      percentAllocations: [60, 40], // 60% and 40%
     },
     account: "0xCreatorAddress",
   }),
@@ -189,7 +189,7 @@ const payload: CreateMomentRequest = {
   splits: {
     // Optional: Configure revenue sharing splits
     recipients: ["0xRecipient1", "0xRecipient2"],
-    percentAllocations: [6000, 4000], // 60% and 40% (in basis points)
+    percentAllocations: [60, 40], // 60% and 40%
   },
   account: "0xCreatorAddress",
 };

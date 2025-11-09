@@ -12,7 +12,7 @@ The `splits` object defines how revenue from moment sales will be distributed am
       "0xRecipient2",
       "0xRecipient3"
     ],
-    "percentAllocations": [5000, 3000, 2000]
+    "percentAllocations": [50, 30, 20]
   }
 }
 ```
@@ -20,7 +20,7 @@ The `splits` object defines how revenue from moment sales will be distributed am
 ### Fields
 
 - **`recipients`**: Array of Ethereum addresses that will receive a share of the revenue
-- **`percentAllocations`**: Array of percentages in basis points (1 basis point = 0.01%). The sum must equal 10000 (100%)
+- **`percentAllocations`**: Array of percentages (0-100). The sum must equal 100. The backend API will validate this value.
 
 ### Important Notes
 
@@ -28,7 +28,7 @@ The `splits` object defines how revenue from moment sales will be distributed am
 - If `splits` is provided, the `payoutRecipient` in the token configuration will be automatically set to the splits contract address
 - If `splits` is not provided, you can optionally specify a `payoutRecipient` directly in the token configuration
 - The `percentAllocations` array must have the same length as the `recipients` array
-- The sum of all `percentAllocations` must equal exactly 10000 (representing 100%)
+- The sum of all `percentAllocations` must equal exactly 100. The backend API will validate this value.
 
 ### Example: Two-Way Split
 
@@ -36,7 +36,7 @@ The `splits` object defines how revenue from moment sales will be distributed am
 {
   "splits": {
     "recipients": ["0xRecipient1", "0xRecipient2"],
-    "percentAllocations": [6000, 4000] // 60% and 40%
+    "percentAllocations": [60, 40] // 60% and 40%
   }
 }
 ```
@@ -51,7 +51,7 @@ The `splits` object defines how revenue from moment sales will be distributed am
       "0xRecipient2",
       "0xRecipient3"
     ],
-    "percentAllocations": [5000, 3000, 2000] // 50%, 30%, and 20%
+    "percentAllocations": [50, 30, 20] // 50%, 30%, and 20%
   }
 }
 ```
