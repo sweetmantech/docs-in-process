@@ -32,8 +32,13 @@ Send a JSON object with the following fields:
       "saleStart": 1717200000,
       "saleEnd": 18446744073709551615
     }, // Sales configuration object
-    "mintToCreatorCount": 1 // Number of tokens to mint to creator (usually 1)
+    "mintToCreatorCount": 1, // Number of tokens to mint to creator (usually 1)
+    "payoutRecipient": "string" // Optional: Address to receive sale proceeds (defaults to creator if not provided)
   },
+  "splits": {
+    "recipients": ["string"], // Array of recipient addresses
+    "percentAllocations": [number] // Array of allocation percentages in basis points (must sum to 10000)
+  }, // Optional: Splits configuration for revenue sharing
   "account": "string" // Creator's address
 }
 ```
@@ -58,8 +63,13 @@ curl -X POST https://inprocess.fun/api/moment/create/writing \
         "saleStart": 1717200000,
         "saleEnd": 18446744073709551615
       },
-      "mintToCreatorCount": 1
-    }
+      "mintToCreatorCount": 1,
+      "payoutRecipient": "0xPayoutAddress" // Optional: defaults to creator if not provided
+    },
+    "splits": {
+      "recipients": ["0xRecipient1", "0xRecipient2"],
+      "percentAllocations": [6000, 4000] // Optional: 60% and 40% (in basis points)
+    },
     "account": "0xCreatorAddress"
   }'
 ```
@@ -77,12 +87,17 @@ payload = {
       "createReferral": "0xReferralAddress",
       "salesConfig": {
         "type": "fixedPrice",
-        "pricePerToken": "100000000000000000", // 0.1 ETH in wei (18 decimals)
+        "pricePerToken": "100000000000000000",  # 0.1 ETH in wei (18 decimals)
         "saleStart": 1717200000,
         "saleEnd": 18446744073709551615
       },
-      "mintToCreatorCount": 1
-    }
+      "mintToCreatorCount": 1,
+      "payoutRecipient": "0xPayoutAddress"  # Optional: defaults to creator if not provided
+    },
+    "splits": {
+      "recipients": ["0xRecipient1", "0xRecipient2"],
+      "percentAllocations": [6000, 4000]  # Optional: 60% and 40% (in basis points)
+    },
     "account": "0xCreatorAddress"
 }
 response = requests.post(url, json=payload)
@@ -109,6 +124,12 @@ const response = await fetch(
           saleEnd: 18446744073709551615,
         },
         mintToCreatorCount: 1,
+        payoutRecipient: "0xPayoutAddress", // Optional: defaults to creator if not provided
+      },
+      splits: {
+        // Optional: Configure revenue sharing splits
+        recipients: ["0xRecipient1", "0xRecipient2"],
+        percentAllocations: [6000, 4000], // 60% and 40% (in basis points)
       },
       account: "0xCreatorAddress",
     }),
@@ -126,6 +147,11 @@ interface SalesConfig {
   saleEnd: number;
 }
 
+interface SplitsConfig {
+  recipients: string[];
+  percentAllocations: number[];
+}
+
 interface CreateWritingMomentRequest {
   contract: {
     name: string;
@@ -135,7 +161,9 @@ interface CreateWritingMomentRequest {
     createReferral: string;
     salesConfig: SalesConfig;
     mintToCreatorCount: number;
+    payoutRecipient?: string; // Optional: Address to receive sale proceeds
   };
+  splits?: SplitsConfig; // Optional: Splits configuration for revenue sharing
   account: string;
 }
 
@@ -153,6 +181,12 @@ const payload: CreateWritingMomentRequest = {
       saleEnd: 18446744073709551615,
     },
     mintToCreatorCount: 1,
+    payoutRecipient: "0xPayoutAddress", // Optional: defaults to creator if not provided
+  },
+  splits: {
+    // Optional: Configure revenue sharing splits
+    recipients: ["0xRecipient1", "0xRecipient2"],
+    percentAllocations: [6000, 4000], // 60% and 40% (in basis points)
   },
   account: "0xCreatorAddress",
 };
@@ -180,5 +214,30 @@ console.log(data);
   "hash": "0xTransactionHash"
 }
 ```
+
+## Splits Configuration
+
+You can optionally configure revenue splits to automatically distribute sale proceeds to multiple recipients. When splits are configured, the `payoutRecipient` in the token configuration will be set to the splits contract address, which will automatically distribute funds according to the specified allocations.
+
+### Splits Example
+
+```json
+{
+  "splits": {
+    "recipients": [
+      "0xRecipient1",
+      "0xRecipient2",
+      "0xRecipient3"
+    ],
+    "percentAllocations": [5000, 3000, 2000]
+  }
+}
+```
+
+- `recipients`: Array of Ethereum addresses that will receive a share of the revenue
+- `percentAllocations`: Array of percentages in basis points (1 basis point = 0.01%). The sum must equal 10000 (100%)
+- The splits contract owner will be set to the creator's smart wallet
+
+> **Note:** If `splits` is provided, the `payoutRecipient` will be automatically set to the splits contract address. If `splits` is not provided, you can optionally specify a `payoutRecipient` directly.
 
 To learn more about SalesConfig, go to [SalesConfig Reference](/moment/create/salesConfig)
