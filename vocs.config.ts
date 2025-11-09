@@ -49,6 +49,10 @@ export default defineConfig({
           link: "/moment/create/salesConfig",
         },
         {
+          text: "Splits Configuration",
+          link: "/moment/create/splits",
+        },
+        {
           text: "Get Comments",
           link: "/moment/comments",
         },

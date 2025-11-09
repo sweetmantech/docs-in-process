@@ -33,8 +33,13 @@ Send a JSON object with the following fields:
       "saleStart": 1717200000,
       "saleEnd": 18446744073709551615
     }, // Sales configuration object
-    "mintToCreatorCount": 1 // Number of tokens to mint to creator (usually 1)
+    "mintToCreatorCount": 1, // Number of tokens to mint to creator (usually 1)
+    "payoutRecipient": "string" // Optional: Address to receive sale proceeds (defaults to creator if not provided)
   },
+  "splits": {
+    "recipients": ["string"], // Array of recipient addresses
+    "percentAllocations": [number] // Array of allocation percentages (0-100, must sum to 100)
+  }, // Optional: Splits configuration for revenue sharing
   "account": "string" // Creator's address
 }
 ```
@@ -60,7 +65,12 @@ curl -X POST https://inprocess.fun/api/moment/create \
         "saleStart": 1717200000,
         "saleEnd": 18446744073709551615
       },
-      "mintToCreatorCount": 1
+      "mintToCreatorCount": 1,
+      "payoutRecipient": "0xPayoutAddress" // Optional: defaults to creator if not provided
+    },
+    "splits": {
+      "recipients": ["0xRecipient1", "0xRecipient2"],
+      "percentAllocations": [60, 40] // Optional: 60% and 40%
     },
     "account": "0xCreatorAddress"
   }'
@@ -84,7 +94,12 @@ payload = {
             "saleStart": 1717200000,
             "saleEnd": 18446744073709551615
         },
-        "mintToCreatorCount": 1
+        "mintToCreatorCount": 1,
+        "payoutRecipient": "0xPayoutAddress"  # Optional: defaults to creator if not provided
+    },
+    "splits": {
+        "recipients": ["0xRecipient1", "0xRecipient2"],
+        "percentAllocations": [60, 40]  # Optional: 60% and 40%
     },
     "account": "0xCreatorAddress"
 }
@@ -111,6 +126,12 @@ const response = await fetch("https://inprocess.fun/api/moment/create", {
         saleEnd: 18446744073709551615,
       },
       mintToCreatorCount: 1,
+      payoutRecipient: "0xPayoutAddress", // Optional: defaults to creator if not provided
+    },
+    splits: {
+      // Optional: Configure revenue sharing splits
+      recipients: ["0xRecipient1", "0xRecipient2"],
+      percentAllocations: [60, 40], // 60% and 40%
     },
     account: "0xCreatorAddress",
   }),
@@ -127,6 +148,11 @@ interface SalesConfig {
   saleEnd: number;
 }
 
+interface SplitsConfig {
+  recipients: string[];
+  percentAllocations: number[];
+}
+
 interface CreateMomentRequest {
   contract: {
     name: string;
@@ -137,7 +163,9 @@ interface CreateMomentRequest {
     createReferral: string;
     salesConfig: SalesConfig;
     mintToCreatorCount: number;
+    payoutRecipient?: string; // Optional: Address to receive sale proceeds
   };
+  splits?: SplitsConfig; // Optional: Splits configuration for revenue sharing
   account: string;
 }
 
@@ -156,6 +184,12 @@ const payload: CreateMomentRequest = {
       saleEnd: 18446744073709551615,
     },
     mintToCreatorCount: 1,
+    payoutRecipient: "0xPayoutAddress", // Optional: defaults to creator if not provided
+  },
+  splits: {
+    // Optional: Configure revenue sharing splits
+    recipients: ["0xRecipient1", "0xRecipient2"],
+    percentAllocations: [60, 40], // 60% and 40%
   },
   account: "0xCreatorAddress",
 };
@@ -181,4 +215,10 @@ console.log(data);
 }
 ```
 
-To learn more about SalesConfig, go to [salesConfig Reference](/moment/create/salesConfig)
+## Splits Configuration
+
+You can optionally configure revenue splits to automatically distribute sale proceeds to multiple recipients. When splits are configured, the `payoutRecipient` in the token configuration will be set to the splits contract address, which will automatically distribute funds according to the specified allocations.
+
+To learn more about Splits Configuration, go to [Splits Configuration Reference](/moment/create/splits).
+
+To learn more about SalesConfig, go to [SalesConfig Reference](/moment/create/salesConfig)
