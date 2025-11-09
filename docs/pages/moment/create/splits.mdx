@@ -1,0 +1,58 @@
+## Splits Configuration Reference
+
+The `splits` object defines how revenue from moment sales will be distributed among multiple recipients. This configuration is optional.
+
+### Splits Structure
+
+```json
+{
+  "splits": {
+    "recipients": [
+      "0xRecipient1",
+      "0xRecipient2",
+      "0xRecipient3"
+    ],
+    "percentAllocations": [5000, 3000, 2000]
+  }
+}
+```
+
+### Fields
+
+- **`recipients`**: Array of Ethereum addresses that will receive a share of the revenue
+- **`percentAllocations`**: Array of percentages in basis points (1 basis point = 0.01%). The sum must equal 10000 (100%)
+
+### Important Notes
+
+- The splits contract owner will be set to the creator's smart wallet
+- If `splits` is provided, the `payoutRecipient` in the token configuration will be automatically set to the splits contract address
+- If `splits` is not provided, you can optionally specify a `payoutRecipient` directly in the token configuration
+- The `percentAllocations` array must have the same length as the `recipients` array
+- The sum of all `percentAllocations` must equal exactly 10000 (representing 100%)
+
+### Example: Two-Way Split
+
+```json
+{
+  "splits": {
+    "recipients": ["0xRecipient1", "0xRecipient2"],
+    "percentAllocations": [6000, 4000] // 60% and 40%
+  }
+}
+```
+
+### Example: Three-Way Split
+
+```json
+{
+  "splits": {
+    "recipients": [
+      "0xRecipient1",
+      "0xRecipient2",
+      "0xRecipient3"
+    ],
+    "percentAllocations": [5000, 3000, 2000] // 50%, 30%, and 20%
+  }
+}
+```
+

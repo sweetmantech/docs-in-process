@@ -219,25 +219,6 @@ console.log(data);
 
 You can optionally configure revenue splits to automatically distribute sale proceeds to multiple recipients. When splits are configured, the `payoutRecipient` in the token configuration will be set to the splits contract address, which will automatically distribute funds according to the specified allocations.
 
-### Splits Example
+To learn more about Splits Configuration, go to [Splits Configuration Reference](/moment/create/splits).
 
-```json
-{
-  "splits": {
-    "recipients": [
-      "0xRecipient1",
-      "0xRecipient2",
-      "0xRecipient3"
-    ],
-    "percentAllocations": [5000, 3000, 2000]
-  }
-}
-```
-
-- `recipients`: Array of Ethereum addresses that will receive a share of the revenue
-- `percentAllocations`: Array of percentages in basis points (1 basis point = 0.01%). The sum must equal 10000 (100%)
-- The splits contract owner will be set to the creator's smart wallet
-
-> **Note:** If `splits` is provided, the `payoutRecipient` will be automatically set to the splits contract address. If `splits` is not provided, you can optionally specify a `payoutRecipient` directly.
-
-To learn more about SalesConfig, go to [salesConfig Reference](/moment/create/salesConfig)
+To learn more about SalesConfig, go to [SalesConfig Reference](/moment/create/salesConfig)
