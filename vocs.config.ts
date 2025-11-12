@@ -61,6 +61,10 @@ export default defineConfig({
           link: "/moment/index",
         },
         {
+          text: "Update Moment URI",
+          link: "/moment/update-uri",
+        },
+        {
           text: "Upload to Arweave",
           link: "/upload-to-arweave",
         },
