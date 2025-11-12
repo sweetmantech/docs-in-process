@@ -4,9 +4,9 @@ title: Update Moment URI
 
 # Update Moment URI
 
-This page documents the API endpoint for updating the URI (metadata) of an existing Moment on the In Process protocol. This endpoint allows artists to update the metadata URI associated with their Moment tokens.
+This page documents the API endpoint for updating the URI (metadata) of an existing Moment on the In Process protocol. This endpoint allows artists to update the metadata URI associated with their Moments.
 
-> **Note:** Only the artist who created the Moment can update its URI.
+> **Note:** Only Moment admins can update the URI.
 
 ## Endpoint
 
@@ -180,8 +180,8 @@ Or for server errors:
 
 ## Notes
 
-- The URI update is executed on-chain via a smart account transaction
-- Only the artist who created the Moment can update its URI
+- The URI update is executed onchain via a smart account transaction
+- Only Moment admins can update the URI
 - The transaction is processed using Coinbase CDP (Coinbase Developer Platform)
 - The `tokenId` should be provided as a string, even if it's a numeric value
 
