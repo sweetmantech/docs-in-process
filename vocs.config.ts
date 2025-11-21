@@ -29,6 +29,10 @@ export default defineConfig({
       text: "Moments",
       items: [
         {
+          text: "Get Moment Info",
+          link: "/moment/get",
+        },
+        {
           text: "Creating a Moment",
           link: "/moment/create",
         },
