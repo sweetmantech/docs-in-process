@@ -14,20 +14,22 @@ GET https://inprocess.fun/api/moment
 
 ## Query Parameters
 
-The following query parameters are required:
-
-| Name           | Type   | Required | Description                                    |
-| -------------- | ------ | -------- | ---------------------------------------------- |
-| tokenContract  | string | Yes      | The contract address of the Moment             |
-| tokenId        | string | Yes      | The token ID of the Moment                     |
-| chainId        | string | Yes      | Chain ID where the contract lives              |
+| Name           | Type   | Required | Default | Description                                    |
+| -------------- | ------ | -------- | ------- | ---------------------------------------------- |
+| tokenContract  | string | Yes      | —       | The contract address of the Moment             |
+| tokenId        | string | Yes      | —       | The token ID of the Moment                     |
+| chainId        | string | No       | 8453    | Chain ID where the contract lives (default: Base chain, 8453) |
 
 ## Example Requests
 
 :::code-group
 
 ```bash [cURL]
+# With chainId (optional, defaults to 8453)
 curl "https://inprocess.fun/api/moment?tokenContract=0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA&tokenId=1&chainId=8453"
+
+# Without chainId (uses default: 8453)
+curl "https://inprocess.fun/api/moment?tokenContract=0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA&tokenId=1"
 ```
 
 ```python [Python]
@@ -37,7 +39,8 @@ url = "https://inprocess.fun/api/moment"
 params = {
     "tokenContract": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
     "tokenId": "1",
-    "chainId": "8453"
+    # chainId is optional, defaults to 8453 (Base)
+    # "chainId": "8453"
 }
 response = requests.get(url, params=params)
 print(response.json())
@@ -47,7 +50,8 @@ print(response.json())
 const params = new URLSearchParams({
     tokenContract: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
     tokenId: "1",
-    chainId: "8453"
+    // chainId is optional, defaults to 8453 (Base)
+    // chainId: "8453"
 });
 
 const response = await fetch(`https://inprocess.fun/api/moment?${params}`);
@@ -59,20 +63,23 @@ console.log(data);
 interface GetMomentInfoParams {
     tokenContract: string;
     tokenId: string;
-    chainId: string;
+    chainId?: string; // Optional, defaults to "8453" (Base)
 }
 
 const params: GetMomentInfoParams = {
     tokenContract: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
     tokenId: "1",
-    chainId: "8453"
+    // chainId is optional, defaults to "8453" (Base)
 };
 
 const queryString = new URLSearchParams({
     tokenContract: params.tokenContract,
     tokenId: params.tokenId,
-    chainId: params.chainId
 });
+// Only add chainId if provided
+if (params.chainId) {
+    queryString.set("chainId", params.chainId);
+}
 
 const response = await fetch(`https://inprocess.fun/api/moment?${queryString}`);
 const data = await response.json();
