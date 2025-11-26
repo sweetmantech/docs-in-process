@@ -11,10 +11,6 @@ export default defineConfig({
       text: "Timelines",
       items: [
         {
-          text: "Browsing the Timelines",
-          link: "/timeline",
-        },
-        {
           text: "in•process Timeline",
           link: "/timeline/inprocess",
         },
@@ -140,6 +136,15 @@ export default defineConfig({
         {
           text: "Get a Smart Wallet",
           link: "/smartwallet/get",
+        },
+      ],
+    },
+    {
+      text: "Legacy",
+      items: [
+        {
+          text: "Browsing the Timelines",
+          link: "/legacy/timeline",
         },
       ],
     },
