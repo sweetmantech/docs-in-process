@@ -83,17 +83,17 @@ print(response.json())
 ```javascript [JavaScript]
 const response = await fetch("https://inprocess.fun/api/moment/collect", {
   method: "POST",
-  headers: { 
+  headers: {
     "Content-Type": "application/json",
-    "x-api-key": "art_sk_3fnm4...f6w4"
+    "x-api-key": "art_sk_3fnm4...f6w4",
   },
   body: JSON.stringify({
-    "moment": {
-      "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-      "tokenId": "1"
+    moment: {
+      contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+      tokenId: "1",
     },
-    "amount": 1,
-    "comment": "in•process!!!"
+    amount: 1,
+    comment: "in•process!!!",
   }),
 });
 const data = await response.json();
@@ -102,28 +102,28 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface CollectMomentRequest {
-  "moment": {
-    "contractAddress": string,
-    "tokenId": string
-  },
-  "amount": number,
-  "comment": string
+  moment: {
+    contractAddress: string;
+    tokenId: string;
+  };
+  amount: number;
+  comment: string;
 }
 
 const payload: CollectMomentRequest = {
-  "moment": {
-    "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-    "tokenId": "1"
+  moment: {
+    contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    tokenId: "1",
   },
-  "amount": 1,
-  "comment": "in•process!!!"
+  amount: 1,
+  comment: "in•process!!!",
 };
 
 const response = await fetch("https://inprocess.fun/api/moment/collect", {
   method: "POST",
-  headers: { 
+  headers: {
     "Content-Type": "application/json",
-    "x-api-key": "art_sk_3fnm4...f6w4"
+    "x-api-key": "art_sk_3fnm4...f6w4",
   },
   body: JSON.stringify(payload),
 });

@@ -14,11 +14,11 @@ GET https://inprocess.fun/api/moment
 
 ## Query Parameters
 
-| Name           | Type   | Required | Default | Description                                    |
-| -------------- | ------ | -------- | ------- | ---------------------------------------------- |
-| tokenContract  | string | Yes      | —       | The contract address of the Moment             |
-| tokenId        | string | Yes      | —       | The token ID of the Moment                     |
-| chainId        | string | No       | 8453    | Chain ID of the collection (default: Base, 8453) |
+| Name          | Type   | Required | Default | Description                                      |
+| ------------- | ------ | -------- | ------- | ------------------------------------------------ |
+| tokenContract | string | Yes      | —       | The contract address of the Moment               |
+| tokenId       | string | Yes      | —       | The token ID of the Moment                       |
+| chainId       | string | No       | 8453    | Chain ID of the collection (default: Base, 8453) |
 
 ## Example Requests
 
@@ -48,10 +48,10 @@ print(response.json())
 
 ```javascript [JavaScript]
 const params = new URLSearchParams({
-    tokenContract: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
-    tokenId: "1",
-    // chainId is optional, defaults to 8453 (Base)
-    // chainId: "8453"
+  tokenContract: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+  tokenId: "1",
+  // chainId is optional, defaults to 8453 (Base)
+  // chainId: "8453"
 });
 
 const response = await fetch(`https://inprocess.fun/api/moment?${params}`);
@@ -61,24 +61,24 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface GetMomentInfoParams {
-    tokenContract: string;
-    tokenId: string;
-    chainId?: string; // Optional, defaults to "8453" (Base)
+  tokenContract: string;
+  tokenId: string;
+  chainId?: string; // Optional, defaults to "8453" (Base)
 }
 
 const params: GetMomentInfoParams = {
-    tokenContract: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
-    tokenId: "1",
-    // chainId is optional, defaults to "8453" (Base)
+  tokenContract: "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
+  tokenId: "1",
+  // chainId is optional, defaults to "8453" (Base)
 };
 
 const queryString = new URLSearchParams({
-    tokenContract: params.tokenContract,
-    tokenId: params.tokenId,
+  tokenContract: params.tokenContract,
+  tokenId: params.tokenId,
 });
 // Only add chainId if provided
 if (params.chainId) {
-    queryString.set("chainId", params.chainId);
+  queryString.set("chainId", params.chainId);
 }
 
 const response = await fetch(`https://inprocess.fun/api/moment?${queryString}`);
@@ -92,27 +92,25 @@ console.log(data);
 
 ```json
 {
-    "uri": "ar://0rs6Y23p-v19UC6VQTD6xvg-srCKFdUc7ngZwTWEDKM",
-    "owner": "0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01",
-    "saleConfig": {
-        "type": "erc20Mint",
-        "pricePerToken": "100000000000000000",
-        "saleStart": 1717200000,
-        "saleEnd": 18446744073709551615,
-        "currency": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
-    },
-    "momentAdmins": [
-        "0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01"
-    ],
-    "metadata": {
-        "name": "My Moment",
-        "image": "ar://U2PRZhy-S_Lrz_AMx-Qh2n6x8Lm3smO9SsLuno1DXRU",
-        "description": "A description of the moment",
-        "content": {
-            "mime": "audio/mpeg",
-            "uri": "ar://z5RXUDCbzwHVJ49emY7XteJScYYP4baBxgVeaqFM3rM"
-        }
+  "uri": "ar://0rs6Y23p-v19UC6VQTD6xvg-srCKFdUc7ngZwTWEDKM",
+  "owner": "0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01",
+  "saleConfig": {
+    "type": "erc20Mint",
+    "pricePerToken": "100000000000000000",
+    "saleStart": 1717200000,
+    "saleEnd": 18446744073709551615,
+    "currency": "0xA0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
+  },
+  "momentAdmins": ["0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01"],
+  "metadata": {
+    "name": "My Moment",
+    "image": "ar://U2PRZhy-S_Lrz_AMx-Qh2n6x8Lm3smO9SsLuno1DXRU",
+    "description": "A description of the moment",
+    "content": {
+      "mime": "audio/mpeg",
+      "uri": "ar://z5RXUDCbzwHVJ49emY7XteJScYYP4baBxgVeaqFM3rM"
     }
+  }
 }
 ```
 
