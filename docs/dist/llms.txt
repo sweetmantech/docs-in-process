@@ -1,0 +1,27 @@
+# In Process
+
+## Docs
+
+- [Create a Collection](/create-collection): This guide shows how to create an NFT collection using JavaScript with the Coinbase CDP SDK and viem.
+- [🚀 Getting Started](/getting-started): Welcome to In Process! This guide will help you get started with our protocol.
+- [Browsing the Payments](/payments): Retrieve payment records from the In Process protocol. Supports filtering by artist and collector addresses.
+- [🌐 Protocol Deployments](/protocol-deployments): Contract addresses for all supported networks.
+- [Setup Actions](/setup-actions): Setup actions are essential for making your digital art tokens appear correctly on marketplaces like Zora, OpenSea, Rarible, and In Process. They provide the necessary metadata and configuration that marketplaces use to display and interact with your tokens.
+- [Upload Files to Arweave](/upload-to-arweave): **For Feria Nounish Artists:** This documentation is inspired by Gabriel Lago from Cali, Colombia, who is building a Feria Nounish MiniApp for the artists participating in this year's fair. The `clientUploadToArweave` function enables artists to upload their artwork and metadata to decentralized storage, creating permanent, onchain records of their contributions to the collective timeline.
+- [in•process Timeline](/timeline/inprocess): Browse the moments from in•process collective timeline. This endpoint returns moments that are being created, indexed, or are in a pending state. Supports pagination for efficient browsing.
+- [Artist Timeline](/timeline/artist): Retrieve moments from a specific artist's timeline. This endpoint returns all moments administered by a particular artist address. Supports pagination for efficient browsing.
+- [Getting a Smart Wallet](/smartwallet/get): This page documents the API endpoint to get a smart wallet connected to an artist wallet on the In Process protocol.
+- [Browsing Notifications](/notifications): Retrieve notification records from the In Process protocol. Supports filtering by artist address.
+- [Update Moment URI](/moment/update-uri): This page documents the API endpoint for updating the URI (metadata) of an existing Moment on the In Process protocol. This endpoint allows artists to update the metadata URI associated with their Moments.
+- [Indexing a Moment](/moment//index): This page documents the API endpoint for **manually indexing or re-indexing** an existing Moment on the In Process protocol. While the protocol includes an automatic indexer, developers can use this endpoint to ensure that any Moment that was missed—or whose onchain metadata has changed—is up-to-date in the In Process database.
+- [Get Moment Info](/moment/get): This page documents the API endpoint for retrieving detailed information about a Moment on the In Process protocol, including on-chain moment data, sales configuration, metadata, and moment admins.
+- [Creating a Moment](/moment/create): This page documents the API endpoint for creating a new Moment on the In Process protocol. No signature is required for this endpoint.
+- [Creating a Writing Moment](/moment/create/writing): This page documents the API endpoint for creating a new Writing Moment on the In Process protocol. No signature is required for this endpoint.
+- [Get Comments](/moment/comments): This page documents the API endpoint for retrieving Moment comments on the In Process protocol.
+- [Collect a Moment](/moment/collect): This page documents the API endpoint to collect a Moment on the In Process protocol.
+- [Airdrop a Moment](/moment/airdrop): This page documents the API endpoint to airdrop a Moment on the In Process protocol.
+- [Browsing the Timeline](/legacy/timeline): Retrieve moments from the collective timeline. Supports pagination for efficient browsing.
+- [Connect a Social Wallet](/artists/wallets/connect): This page documents API endpoints to connect a social wallet and an artist wallet on the In Process protocol.
+- [Disconnect a Social Wallet](/artists/wallets/disconnect): This page documents API endpoints to disconnect a social wallet and an artist wallet on the In Process protocol.
+- [Getting an Artist Wallet](/artists/wallets): This page documents the API endpoint to get an artist wallet associated with a social wallet on the In Process protocol.
+- [Create an Artist API Key](/artists/api-keys/create): This page documents the API endpoint for creating a new API key for artists on the In Process protocol.
