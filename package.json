@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vocs dev",
     "build": "vocs build",
-    "preview": "vocs preview"
+    "preview": "vocs preview",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "dependencies": {
     "react": "latest",
@@ -15,6 +17,7 @@
   },
   "devDependencies": {
     "@types/react": "latest",
+    "prettier": "^3.6.2",
     "typescript": "latest"
   }
 }

@@ -14,6 +14,10 @@ export default defineConfig({
           text: "Browsing the Timelines",
           link: "/timeline",
         },
+        {
+          text: "in•process",
+          link: "/timeline/inprocess",
+        },
       ],
     },
     {
