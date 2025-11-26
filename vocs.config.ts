@@ -15,8 +15,12 @@ export default defineConfig({
           link: "/timeline",
         },
         {
-          text: "in•process",
+          text: "in•process Timeline",
           link: "/timeline/inprocess",
+        },
+        {
+          text: "Artist Timeline",
+          link: "/timeline/artist",
         },
       ],
     },
