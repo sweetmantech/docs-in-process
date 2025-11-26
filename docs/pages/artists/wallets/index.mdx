@@ -16,9 +16,10 @@ GET https://inprocess.fun/api/artists/wallets
 
 Send the social wallet address as a query parameter in the URL:
 
-| Name          | Type   | Required | Default | Description                    |
-| ------------- | ------ | -------- | ------- | ------------------------------ |
-| social_wallet | string | Yes      | —       | The address of a social wallet |
+| Name              | Type   | Required | Default | Description                       |
+| ----------------- | ------ | -------- | ------- | --------------------------------- |
+| social_wallet     | string | Yes      | —       | The address of a social wallet    |
+
 
 ## Example Request
 
@@ -40,9 +41,7 @@ print(response.json())
 ```javascript [JavaScript]
 const params = new URLSearchParams();
 params.set("social_wallet", "0x643D962630E35B49340C23079fBac7D8546d8D01");
-const response = await fetch(
-  `https://inprocess.fun/api/artists/wallets?${params}`
-);
+const response = await fetch(`https://inprocess.fun/api/artists/wallets?${params}`);
 const data = await response.json();
 console.log(data);
 ```
@@ -53,9 +52,7 @@ interface GetArtistWalletResponse {
 }
 const params = new URLSearchParams();
 params.set("social_wallet", "0x643D962630E35B49340C23079fBac7D8546d8D01");
-const response = await fetch(
-  `https://inprocess.fun/api/artists/wallets?${params}`
-);
+const response = await fetch(`https://inprocess.fun/api/artists/wallets?${params}`);
 const data: GetArtistWalletResponse = await response.json();
 console.log(data);
 ```
@@ -66,6 +63,6 @@ console.log(data);
 
 ```json
 {
-  "address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264" // artist wallet address associated with social wallet
+  "address": "0x51027631B9DEF86e088C33368eC4E3A4BE0aD264", // artist wallet address associated with social wallet
 }
 ```

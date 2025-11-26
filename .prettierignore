@@ -1,9 +1,0 @@
-node_modules
-dist
-build
-.next
-.vocs
-pnpm-lock.yaml
-yarn.lock
-package-lock.json
-
