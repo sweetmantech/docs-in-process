@@ -14,16 +14,16 @@ GET https://inprocess.fun/api/timeline/artist
 
 ## Parameters
 
-| Name     | Type                | Required | Default | Description                                                                                                                                     |
-| -------- | ------------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| address  | string              | Yes      | —       | Filter by admin address (only moments administered by this artist address)                                                                      |
-| limit    | number              | No       | 100     | Number of records per page (max: 100)                                                                                                           |
-| page     | number              | No       | 1       | The page number to retrieve                                                                                                                     |
-| chain_id | number              | No       | 8453    | Filter by chain ID (default: Base chain, 8453)                                                                                                  |
-| hidden   | boolean             | No       | false   | If true, includes moments marked as hidden by the admin (default: false)                                                                        |
-| type     | "mutual" or "alone" | No       | "alone" | Determines whether to show moments where the artist is the sole admin (`"alone"`, default) or moments co-administered with others (`"mutual"`). |
+| Name     | Type                | Required | Default | Description                                                                                                                                                  |
+| -------- | ------------------- | -------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| address  | string              | Yes      | —       | Filter by admin address (only moments administered by this artist address)                                                                                   |
+| limit    | number              | No       | 100     | Number of records per page (max: 100)                                                                                                                        |
+| page     | number              | No       | 1       | The page number to retrieve                                                                                                                                  |
+| chain_id | number              | No       | 8453    | Filter by chain ID (default: Base chain, 8453)                                                                                                               |
+| hidden   | boolean             | No       | false   | If true, includes moments marked as hidden by the admin (default: false)                                                                                     |
+| type     | "mutual" or "alone" | No       | \_      | Determines whether to show moments where the artist is the sole admin (`"alone"`), moments co-administered with others (`"mutual"`), or both when undefined. |
 
-The `address` parameter is required and filters the timeline to only show moments administered by that specific artist address. You can also filter by chain using the `chain_id` parameter (default: 8453 for Base). To include moments that have been marked as hidden by the admin, set the `hidden` parameter to `true` (defaults to `false`).
+The `address` parameter is required and filters the timeline to only show moments administered by that specific artist address. You can also filter by chain using the `chain_id` parameter (default: 8453 for Base). To include moments that have been marked as hidden by the admin, set the `hidden` parameter to `true` (defaults to `false`). The `type` parameter filters by admin relationship: use `"alone"` for moments where the artist is the sole admin, `"mutual"` for moments co-administered with others, or omit it (undefined) to return both types.
 
 ## Request Examples
 
@@ -36,9 +36,11 @@ curl -X GET "https://inprocess.fun/api/timeline/artist?address=0x29b6674c1562e31
 ```python [Python]
 import requests
 
-def get_artist_timeline(address: str, page: int = 1, limit: int = 100, chain_id: int = 8453, hidden: bool = False, type: str = "alone"):
+def get_artist_timeline(address: str, page: int = 1, limit: int = 100, chain_id: int = 8453, hidden: bool = False, type: str | None = None):
     url = "https://inprocess.fun/api/timeline/artist"
-    params = {"address": address, "page": page, "limit": limit, "chain_id": chain_id, "type": type}
+    params = {"address": address, "page": page, "limit": limit, "chain_id": chain_id}
+    if type:
+        params["type"] = type
     if hidden:
         params["hidden"] = str(hidden).lower()
     response = requests.get(url, params=params)
@@ -53,15 +55,15 @@ async function getArtistTimeline(
   limit = 100,
   chain_id = 8453,
   hidden = false,
-  type = "alone"
+  type = undefined
 ) {
   const params = new URLSearchParams({
     address: address,
     page: page.toString(),
     limit: limit.toString(),
     chain_id: chain_id.toString(),
-    type: type,
   });
+  if (type) params.set("type", type);
   if (hidden) params.set("hidden", hidden.toString());
   const response = await fetch(
     `https://inprocess.fun/api/timeline/artist?${params}`
@@ -105,15 +107,15 @@ async function getArtistTimeline(
   limit: number = 100,
   chain_id: number = 8453,
   hidden: boolean = false,
-  type: "mutual" | "alone" = "alone"
+  type?: "mutual" | "alone"
 ): Promise<ArtistTimelineResponse> {
   const params = new URLSearchParams({
     address: address,
     page: page.toString(),
     limit: limit.toString(),
     chain_id: chain_id.toString(),
-    type: type,
   });
+  if (type) params.set("type", type);
   if (hidden) params.set("hidden", hidden.toString());
   const response = await fetch(
     `https://inprocess.fun/api/timeline/artist?${params}`
