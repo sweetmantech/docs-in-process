@@ -8,15 +8,6 @@ export default defineConfig({
       link: "/getting-started",
     },
     {
-      text: "Timelines",
-      items: [
-        {
-          text: "Browsing the Timelines",
-          link: "/timeline",
-        },
-      ],
-    },
-    {
       text: "Payments",
       items: [
         {
@@ -132,6 +123,15 @@ export default defineConfig({
         {
           text: "Get a Smart Wallet",
           link: "/smartwallet/get",
+        },
+      ],
+    },
+    {
+      text: "Legacy",
+      items: [
+        {
+          text: "Browsing the Timeline",
+          link: "/legacy/timeline",
         },
       ],
     },
