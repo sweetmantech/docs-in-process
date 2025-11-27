@@ -45,12 +45,12 @@ Send a JSON object with the following fields:
 
 ### Body Parameters
 
-| Name             | Type   | Required | Description                                    |
-| ---------------- | ------ | -------- | ---------------------------------------------- |
-| moment           | object | Yes      | Object containing the Moment identifier        |
-| moment.contractAddress | string | Yes      | The contract address of the Moment to update   |
-| moment.tokenId   | string | Yes      | The token ID of the Moment to update           |
-| newUri           | string | Yes      | The new metadata URI to set for the Moment     |
+| Name                   | Type   | Required | Description                                  |
+| ---------------------- | ------ | -------- | -------------------------------------------- |
+| moment                 | object | Yes      | Object containing the Moment identifier      |
+| moment.contractAddress | string | Yes      | The contract address of the Moment to update |
+| moment.tokenId         | string | Yes      | The token ID of the Moment to update         |
+| newUri                 | string | Yes      | The new metadata URI to set for the Moment   |
 
 ## Example Requests
 
@@ -91,9 +91,9 @@ print(response.json())
 ```javascript [JavaScript]
 const response = await fetch("https://inprocess.fun/api/moment/update-uri", {
   method: "POST",
-  headers: { 
+  headers: {
     "Content-Type": "application/json",
-    "x-api-key": "art_sk_3fnm4...f6w4"
+    "x-api-key": "art_sk_3fnm4...f6w4",
   },
   body: JSON.stringify({
     moment: {
@@ -126,9 +126,9 @@ const payload: UpdateMomentURIRequest = {
 
 const response = await fetch("https://inprocess.fun/api/moment/update-uri", {
   method: "POST",
-  headers: { 
+  headers: {
     "Content-Type": "application/json",
-    "x-api-key": "art_sk_3fnm4...f6w4"
+    "x-api-key": "art_sk_3fnm4...f6w4",
   },
   body: JSON.stringify(payload),
 });
@@ -149,10 +149,10 @@ console.log(data);
 
 ### Response Fields
 
-| Name    | Type   | Description                                    |
-| ------- | ------ | ---------------------------------------------- |
-| hash    | string | Transaction hash of the update operation       |
-| chainId | number | Chain ID where the transaction was executed    |
+| Name    | Type   | Description                                 |
+| ------- | ------ | ------------------------------------------- |
+| hash    | string | Transaction hash of the update operation    |
+| chainId | number | Chain ID where the transaction was executed |
 
 ## Example Error Response
 
@@ -184,4 +184,3 @@ Or for server errors:
 - Only Moment admins can update the URI
 - The transaction is processed using Coinbase CDP (Coinbase Developer Platform)
 - The `tokenId` should be provided as a string, even if it's a numeric value
-
