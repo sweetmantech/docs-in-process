@@ -8,6 +8,10 @@ export default defineConfig({
       link: "/getting-started",
     },
     {
+      text: "Timeline",
+      link: "/timeline",
+    },
+    {
       text: "Payments",
       items: [
         {
