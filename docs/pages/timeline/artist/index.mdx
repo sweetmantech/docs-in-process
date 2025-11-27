@@ -21,9 +21,9 @@ GET https://inprocess.fun/api/timeline/artist
 | page     | number              | No       | 1       | The page number to retrieve                                                                                                                                  |
 | chain_id | number              | No       | 8453    | Filter by chain ID (default: Base chain, 8453)                                                                                                               |
 | hidden   | boolean             | No       | false   | If true, includes moments marked as hidden by the admin (default: false)                                                                                     |
-| type     | "mutual" or "alone" | No       | \_      | Determines whether to show moments where the artist is the sole admin (`"alone"`), moments co-administered with others (`"mutual"`), or both when undefined. |
+| type     | "mutual" or "alone" | No       | —      | Determines whether to show moments where the artist is the sole admin (`"alone"`), moments co-administered with others (`"mutual"`), or both when not provided. |
 
-The `address` parameter is required and filters the timeline to only show moments administered by that specific artist address. You can also filter by chain using the `chain_id` parameter (default: 8453 for Base). To include moments that have been marked as hidden by the admin, set the `hidden` parameter to `true` (defaults to `false`). The `type` parameter filters by admin relationship: use `"alone"` for moments where the artist is the sole admin, `"mutual"` for moments co-administered with others, or omit it (undefined) to return both types.
+The `address` parameter is required and filters the timeline to only show moments administered by that specific artist address. You can also filter by chain using the `chain_id` parameter (default: 8453 for Base). To include moments that have been marked as hidden by the admin, set the `hidden` parameter to `true` (defaults to `false`). The `type` parameter filters by admin relationship: use `"alone"` for moments where the artist is the sole admin, `"mutual"` for moments co-administered with others, or omit it (not provided) to return both types.
 
 ## Request Examples
 
