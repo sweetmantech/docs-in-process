@@ -16,9 +16,9 @@ GET https://inprocess.fun/api/moment/comments
 
 The following query parameters are required:
 
-- `contractAddress` (string): Moment contract address
+- `collectionAddress` (string): Moment contract address
 - `tokenId` (string): Token ID
-- `chainId` (number): Chain ID
+- `chainId` (number): Chain ID (optional, default: Base, 8453)
 - `offset` (number): Pagination offset (optional, defaults to 0)
 
 ## Example Requests
@@ -26,7 +26,7 @@ The following query parameters are required:
 :::code-group
 
 ```bash [cURL]
-curl "https://inprocess.fun/api/moment/comments?contractAddress=0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E&tokenId=1&chainId=84532&offset=0"
+curl "https://inprocess.fun/api/moment/comments?collectionAddress=0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E&tokenId=1&chainId=84532&offset=0"
 ```
 
 ```python [Python]
@@ -34,7 +34,7 @@ import requests
 
 url = "https://inprocess.fun/api/moment/comments"
 params = {
-  "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  "collectionAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
   "tokenId": "1",
   "chainId": 84532,
   "offset": 0
@@ -45,7 +45,7 @@ print(response.json())
 
 ```javascript [JavaScript]
 const params = new URLSearchParams({
-  contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  collectionAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
   tokenId: "1",
   chainId: "84532",
   offset: "0",
@@ -60,21 +60,21 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface CommentsQueryParams {
-  contractAddress: string;
+  collectionAddress: string;
   tokenId: string;
   chainId: number;
   offset?: number;
 }
 
 const params: CommentsQueryParams = {
-  contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+  collectionAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
   tokenId: "1",
   chainId: 84532,
   offset: 0,
 };
 
 const queryString = new URLSearchParams({
-  contractAddress: params.contractAddress,
+  collectionAddress: params.collectionAddress,
   tokenId: params.tokenId,
   chainId: params.chainId.toString(),
   offset: params.offset?.toString() || "0",

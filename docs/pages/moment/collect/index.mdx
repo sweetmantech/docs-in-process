@@ -34,8 +34,9 @@ Send a JSON object with the following fields:
 ```json
 {
   "moment": {
-    "contractAddress": string, // Moment address
+    "collectionAddress": string, // Moment address
     "tokenId": string // TokenId of moment
+    "chainId": number // Chain ID of the collection (optional, default: Base 8453)
   },
   "amount": number, // Amount to be collected
   "comment": string // Comment
@@ -52,7 +53,7 @@ curl -X POST https://inprocess.fun/api/moment/collect \
   -H "x-api-key: art_sk_3fnm4...f6w4" \
   -d '{
     "moment": {
-      "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+      "collectionAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
       "tokenId": "1"
     },
     "amount": 1,
@@ -70,7 +71,7 @@ headers = {
 }
 payload = {
   "moment": {
-    "contractAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    "collectionAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
     "tokenId": "1"
   },
   "amount": 1,
@@ -89,7 +90,7 @@ const response = await fetch("https://inprocess.fun/api/moment/collect", {
   },
   body: JSON.stringify({
     moment: {
-      contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+      collectionAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
       tokenId: "1",
     },
     amount: 1,
@@ -103,7 +104,7 @@ console.log(data);
 ```typescript [TypeScript]
 interface CollectMomentRequest {
   moment: {
-    contractAddress: string;
+    collectionAddress: string;
     tokenId: string;
   };
   amount: number;
@@ -112,7 +113,7 @@ interface CollectMomentRequest {
 
 const payload: CollectMomentRequest = {
   moment: {
-    contractAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
+    collectionAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
     tokenId: "1",
   },
   amount: 1,
