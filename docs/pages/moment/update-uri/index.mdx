@@ -36,8 +36,9 @@ Send a JSON object with the following fields:
 ```json
 {
   "moment": {
-    "contractAddress": "string", // Contract address of the Moment
+    "collectionAddress": "string", // Contract address of the Moment
     "tokenId": "string" // Token ID of the Moment to update
+    "chainId": "number" // Chain ID (default: Base 8453)
   },
   "newUri": "string" // New metadata URI (e.g., Arweave URI)
 }
