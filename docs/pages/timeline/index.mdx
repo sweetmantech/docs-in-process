@@ -26,7 +26,7 @@ GET https://inprocess.fun/api/timeline
 The `address` parameter determines the behavior of the endpoint:
 
 - **When `address` is provided**: Returns moments from the specific artist's timeline (only moments administered by that artist address). The `type` parameter can be used to filter by admin relationship.
-- **When `address` is omitted**: Returns moments from the in•process collective timeline (moments that are being created, indexed, or are in a pending state).
+- **When `address` is omitted**: Returns moments from the in•process collective timeline (moments that are being created, indexed).
 
 You can filter by chain using the `chain_id` parameter (default: 8453 for Base). To include moments that have been marked as hidden by the admin, set the `hidden` parameter to `true` (defaults to `false`).
 

@@ -67,7 +67,9 @@ async function getTimeline(
   });
   if (artist) params.set("artist", artist);
   if (hidden) params.set("hidden", hidden.toString());
-  const response = await fetch(`https://inprocess.fun/api/legacy/timeline?${params}`);
+  const response = await fetch(
+    `https://inprocess.fun/api/legacy/timeline?${params}`
+  );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
@@ -112,7 +114,9 @@ async function getTimeline(
   });
   if (artist) params.set("artist", artist);
   if (hidden) params.set("hidden", hidden.toString());
-  const response = await fetch(`https://inprocess.fun/api/legacy/timeline?${params}`);
+  const response = await fetch(
+    `https://inprocess.fun/api/legacy/timeline?${params}`
+  );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
@@ -193,4 +197,3 @@ If an error occurs, the API returns:
   "message": "...error message..."
 }
 ```
-
