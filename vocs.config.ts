@@ -130,14 +130,5 @@ export default defineConfig({
         },
       ],
     },
-    {
-      text: "Legacy",
-      items: [
-        {
-          text: "Browsing the Timeline",
-          link: "/legacy/timeline",
-        },
-      ],
-    },
   ],
 });
