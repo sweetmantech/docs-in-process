@@ -8,7 +8,7 @@ export default defineConfig({
       link: "/getting-started",
     },
     {
-      text: "Timeline",
+      text: "Browsing the Timelines",
       link: "/timeline",
     },
     {
