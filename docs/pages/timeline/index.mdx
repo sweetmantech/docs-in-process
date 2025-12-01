@@ -84,7 +84,6 @@ async function getTimeline(
 export interface Admin {
   address: string; // Address
   username: string; // Username of the admin/artist, if available
-  defaultAdmin: boolean; // Whether this admin is the default admin
   hidden: boolean; // Whether the moment is hidden by this admin
 }
 
@@ -197,7 +196,6 @@ getTimeline();
 export interface Admin {
   address: string; // Address
   username: string; // Username of the admin/artist, if available
-  defaultAdmin: boolean; // Whether this admin is the default admin
   hidden: boolean; // Whether the moment is hidden by this admin
 }
 
@@ -279,13 +277,11 @@ The API returns JSON responses with the same structure. Here's an example succes
         {
           "address": "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
           "username": "artist name 1",
-          "defaultAdmin": true,
           "hidden": false
         },
         {
           "address": "0xAF1452d289E22FbD0DEA9d5097353c72a90FAC33",
           "username": "artist name 2",
-          "defaultAdmin": false,
           "hidden": true
         }
       ],
@@ -307,36 +303,35 @@ The API returns JSON responses with the same structure. Here's an example succes
 
 - **`admins[]`**: Contains the list of currently active admins, which can change over time as admin permissions are added or removed.
 
-- **Relationship**: The `default_admin` will appear in the `admins[]` array **if and only if** they still have active admin permissions. When present in `admins[]`, the admin object will have `defaultAdmin: true`. If the original default admin no longer has admin permissions, they will not appear in `admins[]`, but their information will still be available in the `default_admin` field.
+- **Relationship**: The `default_admin` will appear in the `admins[]` array **if and only if** they still have active admin permissions. If the original default admin no longer has admin permissions, they will not appear in `admins[]`, but their information will still be available in the `default_admin` field.
 
 ## Response Properties
 
 ### Response Object
 
-| Property                         | Type    | Description                                                                                                                                |
-| -------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| status                           | string  | Status of the request ("success" or "error")                                                                                               |
-| moments                          | array   | List of moments in the timeline                                                                                                            |
-| moments[].address                | string  | Moment collection address                                                                                                                  |
-| moments[].token_id               | string  | Token Id of Moment                                                                                                                         |
-| moments[].chain_id               | number  | Chain ID                                                                                                                                   |
-| moments[].id                     | string  | UUID of the moment                                                                                                                         |
-| moments[].uri                    | string  | Metadata URI                                                                                                                               |
-| moments[].default_admin          | object  | The original admin set at collection creation (always present, preserves historical record)                                                |
-| moments[].default_admin.address  | string  | Address of the original default admin                                                                                                      |
-| moments[].default_admin.username | string  | Username of the default admin, if available                                                                                                |
-| moments[].default_admin.hidden   | boolean | Whether the moment is hidden by the default admin                                                                                          |
-| moments[].admins                 | array   | Array of currently active admin objects. The default admin appears here only if they still have admin permissions.                         |
-| moments[].admins[].address       | string  | Admin artist address                                                                                                                       |
-| moments[].admins[].username      | string  | Username of the admin/artist, if available                                                                                                 |
-| moments[].admins[].defaultAdmin  | boolean | Whether this admin is the default admin. `true` if this admin matches `default_admin` and still has active permissions, `false` otherwise. |
-| moments[].admins[].hidden        | boolean | Whether the moment is hidden by this admin                                                                                                 |
-| moments[].created_at             | string  | ISO timestamp when the moment was created                                                                                                  |
-| moments[].updated_at             | string  | ISO timestamp when the moment metadata was updated                                                                                         |
-| pagination                       | object  | Pagination metadata for the response                                                                                                       |
-| pagination.page                  | number  | Current page number                                                                                                                        |
-| pagination.limit                 | number  | Number of moments per page                                                                                                                 |
-| pagination.total_pages           | number  | Total number of pages available                                                                                                            |
+| Property                         | Type    | Description                                                                                                        |
+| -------------------------------- | ------- | ------------------------------------------------------------------------------------------------------------------ |
+| status                           | string  | Status of the request ("success" or "error")                                                                       |
+| moments                          | array   | List of moments in the timeline                                                                                    |
+| moments[].address                | string  | Moment collection address                                                                                          |
+| moments[].token_id               | string  | Token Id of Moment                                                                                                 |
+| moments[].chain_id               | number  | Chain ID                                                                                                           |
+| moments[].id                     | string  | UUID of the moment                                                                                                 |
+| moments[].uri                    | string  | Metadata URI                                                                                                       |
+| moments[].default_admin          | object  | The original admin set at collection creation (always present, preserves historical record)                        |
+| moments[].default_admin.address  | string  | Address of the original default admin                                                                              |
+| moments[].default_admin.username | string  | Username of the default admin, if available                                                                        |
+| moments[].default_admin.hidden   | boolean | Whether the moment is hidden by the default admin                                                                  |
+| moments[].admins                 | array   | Array of currently active admin objects. The default admin appears here only if they still have admin permissions. |
+| moments[].admins[].address       | string  | Admin artist address                                                                                               |
+| moments[].admins[].username      | string  | Username of the admin/artist, if available                                                                         |
+| moments[].admins[].hidden        | boolean | Whether the moment is hidden by this admin                                                                         |
+| moments[].created_at             | string  | ISO timestamp when the moment was created                                                                          |
+| moments[].updated_at             | string  | ISO timestamp when the moment metadata was updated                                                                 |
+| pagination                       | object  | Pagination metadata for the response                                                                               |
+| pagination.page                  | number  | Current page number                                                                                                |
+| pagination.limit                 | number  | Number of moments per page                                                                                         |
+| pagination.total_pages           | number  | Total number of pages available                                                                                    |
 
 ## Error Response
 
