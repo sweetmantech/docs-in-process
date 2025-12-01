@@ -14,14 +14,14 @@ GET https://inprocess.fun/api/timeline
 
 ## Parameters
 
-| Name     | Type                | Required | Default | Description                                                                                                                                                                                                 |
-| -------- | ------------------- | -------- | ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| address  | string              | No       | —       | Filter by admin address (only moments administered by this artist address). When provided, returns the artist timeline. When omitted, returns the in•process collective timeline.                           |
-| limit    | number              | No       | 100     | Number of records per page (max: 100)                                                                                                                                                                       |
-| page     | number              | No       | 1       | The page number to retrieve                                                                                                                                                                                 |
-| chain_id | number              | No       | 8453    | Filter by chain ID (default: Base chain, 8453)                                                                                                                                                              |
-| hidden   | boolean             | No       | false   | If true, includes moments marked as hidden by the admin (default: false)                                                                                                                                    |
-| type     | "mutual" or "alone" | No       | —       | Only applicable when `address` is provided. Determines whether to show moments where the artist is the sole admin (`"alone"`), moments co-administered with others (`"mutual"`), or both when not provided. |
+| Name     | Type                  | Required | Default | Description                                                                                                                                                                                                      |
+| -------- | --------------------- | -------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| address  | string                | No       | —       | Filter by admin address (only moments administered by this artist address). When provided, returns the artist timeline. When omitted, returns the in•process collective timeline.                                |
+| limit    | number                | No       | 100     | Number of records per page (max: 100)                                                                                                                                                                            |
+| page     | number                | No       | 1       | The page number to retrieve                                                                                                                                                                                      |
+| chain_id | number                | No       | 8453    | Filter by chain ID (default: Base chain, 8453)                                                                                                                                                                   |
+| hidden   | boolean               | No       | false   | If true, includes moments marked as hidden by the admin (default: false)                                                                                                                                         |
+| type     | "mutual" or "default" | No       | —       | Only applicable when `address` is provided. Determines whether to show moments where the artist is the default admin (`"default"`), moments co-administered with others (`"mutual"`), or both when not provided. |
 
 The `address` parameter determines the behavior of the endpoint:
 
@@ -114,7 +114,7 @@ async function getTimeline(
   limit: number = 100,
   chain_id: number = 8453,
   hidden: boolean = false,
-  type?: "mutual" | "alone"
+  type?: "mutual" | "default"
 ): Promise<TimelineResponse> {
   const params = new URLSearchParams({
     page: page.toString(),
@@ -220,7 +220,7 @@ async function getTimeline(
   limit: number = 100,
   chain_id: number = 8453,
   hidden: boolean = false,
-  type?: "mutual" | "alone"
+  type?: "mutual" | "default"
 ): Promise<TimelineResponse> {
   const params = new URLSearchParams({
     page: page.toString(),
