@@ -32,7 +32,7 @@ When creating a new contract, send a JSON object with the following fields:
     "tokenMetadataURI": "string", // Metadata URI for the token (e.g., Arweave URI)
     "createReferral": "string", // Referral recipient address
     "salesConfig": {
-      "type": "string", // "fixedPrice" | "erc20Mint" | "timed" | "allowlistMint"
+      "type": "string", // "fixedPrice" | "erc20Mint"
       "pricePerToken": "string", // Price in wei (18 decimals)
       "saleStart": "1717200000", // Unix timestamp as string
       "saleEnd": "18446744073709551615", // Unix timestamp as string
@@ -209,7 +209,7 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface SalesConfig {
-  type: "fixedPrice" | "erc20Mint" | "timed" | "allowlistMint";
+  type: "fixedPrice" | "erc20Mint";
   pricePerToken: string;
   saleStart: string; // Unix timestamp as string
   saleEnd: string; // Unix timestamp as string
@@ -352,7 +352,7 @@ console.log(data);
 
 ```typescript [TypeScript]
 interface SalesConfig {
-  type: "fixedPrice" | "erc20Mint" | "timed" | "allowlistMint";
+  type: "fixedPrice" | "erc20Mint";
   pricePerToken: string;
   saleStart: string; // Unix timestamp as string
   saleEnd: string; // Unix timestamp as string
@@ -437,7 +437,7 @@ To learn more about Splits Configuration, see the [Splits Configuration Referenc
 
 The `salesConfig` object controls how tokens are sold:
 
-- **type**: The sale type (`"fixedPrice"`, `"erc20Mint"`, `"timed"`, or `"allowlistMint"`)
+- **type**: The sale type (`"fixedPrice"` or `"erc20Mint"`)
 - **pricePerToken**: Price per token in wei (18 decimals). For example, `"100000000000000000"` represents 0.1 ETH
 - **saleStart**: Unix timestamp as a string indicating when the sale starts
 - **saleEnd**: Unix timestamp as a string indicating when the sale ends
