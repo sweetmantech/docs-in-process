@@ -85,6 +85,7 @@ export interface DefaultAdmin {
 export interface Collection {
   address: string; // Collection contract address
   chainId: number; // Chain ID
+  name: string; // Collection name
   uri: string; // Metadata URI
   default_admin: DefaultAdmin; // Original admin set at collection creation
   payout_recipient: string; // Address to receive sale proceeds
@@ -185,6 +186,7 @@ export interface DefaultAdmin {
 export interface Collection {
   address: string; // Collection contract address
   chainId: number; // Chain ID
+  name: string; // Collection name
   uri: string; // Metadata URI
   default_admin: DefaultAdmin; // Original admin set at collection creation
   payout_recipient: string; // Address to receive sale proceeds
@@ -238,6 +240,7 @@ The API returns JSON responses. Here's an example success response:
     {
       "address": "0x06a701Ae65582B92Af48cDff45a8B20DcA3714cA",
       "chainId": 8453,
+      "name": "My Collection",
       "uri": "ar://1wMmKuaz-VdxmruOQJuYS-3nfU3zlNKmPNpc79Ou-qM",
       "default_admin": {
         "address": "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
@@ -266,6 +269,7 @@ The API returns JSON responses. Here's an example success response:
 | collections                          | array  | List of collection records                    |
 | collections[].address                | string | Contract address of the collection            |
 | collections[].chainId                | number | Chain ID where the collection exists          |
+| collections[].name                   | string | Collection name                               |
 | collections[].uri                    | string | Metadata URI                                  |
 | collections[].default_admin          | object | Original admin set at collection creation     |
 | collections[].default_admin.address  | string | Address of the default admin                  |
