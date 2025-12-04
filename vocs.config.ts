@@ -26,6 +26,15 @@ export default defineConfig({
       ],
     },
     {
+      text: "Collections",
+      items: [
+        {
+          text: "Browsing the Collections",
+          link: "/collections",
+        },
+      ],
+    },
+    {
       text: "Moments",
       items: [
         {
