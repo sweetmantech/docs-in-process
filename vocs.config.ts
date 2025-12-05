@@ -32,6 +32,10 @@ export default defineConfig({
           text: "Browsing the Collections",
           link: "/collections",
         },
+        {
+          text: "Get Collection Info",
+          link: "/collections/get",
+        },
       ],
     },
     {
