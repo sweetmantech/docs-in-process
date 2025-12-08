@@ -37,7 +37,7 @@ export default defineConfig({
           link: "/collections/get",
         },
         {
-          text: "Update Collection URI",
+          text: "Update Collection Metadata",
           link: "/collections/update-uri",
         },
       ],

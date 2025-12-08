@@ -1,12 +1,12 @@
 ---
-title: Update Collection URI
+title: Update Collection Metadata
 ---
 
-# Update Collection URI
+# Update Collection Metadata
 
-This page documents the API endpoint for updating the URI (metadata) of an existing Collection on the In Process protocol. This endpoint allows artists to update the metadata URI associated with their Collections.
+This page documents the API endpoint for updating the metadata (name and URI) of an existing Collection on the In Process protocol. This endpoint allows artists to update the collection name and metadata URI associated with their Collections.
 
-> **Note:** Only Collection admins can update the URI.
+> **Note:** Only Collection admins can update the metadata.
 
 ## Endpoint
 
@@ -183,12 +183,12 @@ Or for server errors:
 
 ```json
 {
-  "message": "failed to update collection URI"
+  "message": "failed to update collection metadata"
 }
 ```
 
 ## Notes
 
-- The URI update is executed onchain via a smart account transaction
-- Only Collection admins can update the URI
+- The metadata update is executed onchain via a smart account transaction
+- Only Collection admins can update the metadata
 - The transaction is processed using Coinbase CDP (Coinbase Developer Platform)
