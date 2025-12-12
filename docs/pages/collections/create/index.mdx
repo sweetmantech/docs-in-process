@@ -54,7 +54,7 @@ Send a JSON object with the following fields:
 
 :::code-group
 
-```bash [cURL]`
+```bash [cURL]
 curl -X POST https://inprocess.fun/api/collections \
  -H "Content-Type: application/json" \
  -d '{
@@ -63,7 +63,7 @@ curl -X POST https://inprocess.fun/api/collections \
 "uri": "ar://collection-metadata-uri"
 }'
 
-````
+```
 
 ```python [Python]
 import requests
@@ -79,7 +79,7 @@ payload = {
 }
 response = requests.post(url, json=payload, headers=headers)
 print(response.json())
-````
+```
 
 ```javascript [JavaScript]
 const response = await fetch("https://inprocess.fun/api/collections", {
