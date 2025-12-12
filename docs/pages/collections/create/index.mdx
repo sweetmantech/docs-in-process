@@ -4,14 +4,14 @@ title: Create a Collection
 
 # Create a Collection
 
-This page documents the API endpoint for creating a new Collection on the In Process protocol. This endpoint allows artists to create a new collection contract on-chain.
+This page documents the API endpoint for creating a new Collection on the In Process protocol. This endpoint allows artists to create a new collection contract onchain.
 
-> **Note:** The collection is created on-chain via a smart account transaction.
+> **Note:** The collection is created onchain via a smart account transaction.
 
 ## Endpoint
 
 ```http
-POST https://inprocess.fun/api/collection/create
+POST https://inprocess.fun/api/collections
 ```
 
 ## Request Body
@@ -55,19 +55,20 @@ Send a JSON object with the following fields:
 :::code-group
 
 ```bash [cURL]
-curl -X POST https://inprocess.fun/api/collection/create \
-  -H "Content-Type: application/json" \
-  -d '{
-    "account": "0x1234567890123456789012345678901234567890",
-    "name": "My Collection",
-    "uri": "ar://collection-metadata-uri"
-  }'
+curl -X POST https://inprocess.fun/api/collections \
+ -H "Content-Type: application/json" \
+ -d '{
+"account": "0x1234567890123456789012345678901234567890",
+"name": "My Collection",
+"uri": "ar://collection-metadata-uri"
+}'
+
 ```
 
 ```python [Python]
 import requests
 
-url = "https://inprocess.fun/api/collection/create"
+url = "https://inprocess.fun/api/collections"
 headers = {
   "Content-Type": "application/json"
 }
@@ -81,7 +82,7 @@ print(response.json())
 ```
 
 ```javascript [JavaScript]
-const response = await fetch("https://inprocess.fun/api/collection/create", {
+const response = await fetch("https://inprocess.fun/api/collections", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -113,7 +114,7 @@ const payload: CreateCollectionRequest = {
   uri: "ar://collection-metadata-uri",
 };
 
-const response = await fetch("https://inprocess.fun/api/collection/create", {
+const response = await fetch("https://inprocess.fun/api/collections", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -133,7 +134,7 @@ If you want to configure revenue sharing, include the `splits` array:
 :::code-group
 
 ```bash [cURL]
-curl -X POST https://inprocess.fun/api/collection/create \
+curl -X POST https://inprocess.fun/api/collections \
   -H "Content-Type: application/json" \
   -d '{
     "account": "0x1234567890123456789012345678901234567890",
@@ -155,7 +156,7 @@ curl -X POST https://inprocess.fun/api/collection/create \
 ```python [Python]
 import requests
 
-url = "https://inprocess.fun/api/collection/create"
+url = "https://inprocess.fun/api/collections"
 headers = {
   "Content-Type": "application/json"
 }
@@ -179,7 +180,7 @@ print(response.json())
 ```
 
 ```javascript [JavaScript]
-const response = await fetch("https://inprocess.fun/api/collection/create", {
+const response = await fetch("https://inprocess.fun/api/collections", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -231,7 +232,7 @@ const payload: CreateCollectionRequest = {
   ],
 };
 
-const response = await fetch("https://inprocess.fun/api/collection/create", {
+const response = await fetch("https://inprocess.fun/api/collections", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
@@ -304,7 +305,7 @@ If an error occurs (e.g., invalid input or transaction failure), the API returns
 
 ## Notes
 
-- The collection is created on-chain via a smart account transaction
+- The collection is created onchain via a smart account transaction
 - The transaction is processed using Coinbase CDP (Coinbase Developer Platform)
 - The `account` address will be set as the default admin of the collection
 - If `splits` are provided, they must have at least 2 recipients and the total percentage allocation must equal 100%
