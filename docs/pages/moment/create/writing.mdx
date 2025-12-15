@@ -6,7 +6,7 @@ title: Create a Writing Moment
 
 This page documents the API endpoint for creating a new Writing Moment on the In Process protocol. No signature is required for this endpoint.
 
-> **Note:** You can view the collective timeline by [browsing the timeline](/timeline).
+> **Note:** You must [create a Collection](/collections/create) first before creating a Writing Moment.
 
 ## Endpoint
 
@@ -16,17 +16,11 @@ POST https://inprocess.fun/api/moment/create/writing
 
 ## Request Body
 
-The API supports two modes of operation:
-
-### Mode 1: Create a New Contract and Set Up a Token
-
-When creating a new contract, send a JSON object with the following fields:
+Send a JSON object with `contractAddress` to add a writing moment to an existing collection:
 
 ```json
 {
-  "contract": {
-    "name": "string" // Name of the contract
-  },
+  "contractAddress": "string", // Address of existing collection
   "token": {
     "tokenContent": "string", // Writing content for the token (e.g., "Hello world")
     "createReferral": "string", // Referral recipient address
@@ -54,43 +48,7 @@ When creating a new contract, send a JSON object with the following fields:
 }
 ```
 
-### Mode 2: Add Token to Existing Contract
-
-When adding a token to an existing contract, send a JSON object with `contractAddress` instead of `contract`:
-
-```json
-{
-  "contractAddress": "string", // Address of existing contract
-  "token": {
-    "tokenContent": "string",
-    "createReferral": "string",
-    "salesConfig": {
-      "type": "string",
-      "pricePerToken": "string",
-      "saleStart": "1717200000",
-      "saleEnd": "18446744073709551615",
-      "currency": "string" // Optional
-    },
-    "mintToCreatorCount": 1,
-    "payoutRecipient": "string" // Optional
-  },
-  "splits": [
-    {
-      "address": "string",
-      "percentAllocation": 60
-    },
-    {
-      "address": "string",
-      "percentAllocation": 40
-    }
-  ], // Optional
-  "account": "string"
-}
-```
-
 ## Example Request
-
-### 1. Create a New Contract and Set Up a Token
 
 :::code-group
 
@@ -98,9 +56,7 @@ When adding a token to an existing contract, send a JSON object with `contractAd
 curl -X POST https://inprocess.fun/api/moment/create/writing \
   -H "Content-Type: application/json" \
   -d '{
-    "contract": {
-      "name": "My Writing Moment"
-    },
+    "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     "token": {
       "tokenContent": "Hello world",
       "createReferral": "0xReferralAddress",
@@ -133,9 +89,7 @@ import requests
 
 url = "https://inprocess.fun/api/moment/create/writing"
 payload = {
-    "contract": {
-        "name": "My Writing Moment",
-    },
+    "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     "token": {
         "tokenContent": "Hello world",
         "createReferral": "0xReferralAddress",
@@ -172,9 +126,7 @@ const response = await fetch(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      contract: {
-        name: "My Writing Moment",
-      },
+      contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
       token: {
         tokenContent: "Hello world",
         createReferral: "0xReferralAddress",
@@ -220,10 +172,8 @@ interface Split {
   percentAllocation: number; // 0-100
 }
 
-interface CreateNewContractRequest {
-  contract: {
-    name: string;
-  };
+interface CreateWritingMomentRequest {
+  contractAddress: string;
   token: {
     tokenContent: string;
     createReferral: string;
@@ -231,14 +181,12 @@ interface CreateNewContractRequest {
     mintToCreatorCount: number;
     payoutRecipient?: string; // Optional
   };
-  splits?: Split[]; // Optional: Must sum to 100% and have at least 2 recipients
+  splits?: Split[]; // Optional
   account: string;
 }
 
-const payload: CreateNewContractRequest = {
-  contract: {
-    name: "My Writing Moment",
-  },
+const payload: CreateWritingMomentRequest = {
+  contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
   token: {
     tokenContent: "Hello world",
     createReferral: "0xReferralAddress",
@@ -262,137 +210,6 @@ const payload: CreateNewContractRequest = {
       percentAllocation: 40,
     },
   ],
-  account: "0xCreatorAddress",
-};
-
-const response = await fetch(
-  "https://inprocess.fun/api/moment/create/writing",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  }
-);
-const data = await response.json();
-console.log(data);
-```
-
-:::
-
-### 2. Create a Token on Existing Contract
-
-:::code-group
-
-```bash [cURL]
-curl -X POST https://inprocess.fun/api/moment/create/writing \
-  -H "Content-Type: application/json" \
-  -d '{
-    "contractAddress": "0xExistingContractAddress",
-    "token": {
-      "tokenContent": "Hello world",
-      "createReferral": "0xReferralAddress",
-      "salesConfig": {
-        "type": "fixedPrice",
-        "pricePerToken": "100000000000000000",
-        "saleStart": "1717200000",
-        "saleEnd": "18446744073709551615"
-      },
-      "mintToCreatorCount": 1
-    },
-    "account": "0xCreatorAddress"
-  }'
-```
-
-```python [Python]
-import requests
-
-url = "https://inprocess.fun/api/moment/create/writing"
-payload = {
-    "contractAddress": "0xExistingContractAddress",
-    "token": {
-        "tokenContent": "Hello world",
-        "createReferral": "0xReferralAddress",
-        "salesConfig": {
-            "type": "fixedPrice",
-            "pricePerToken": "100000000000000000",
-            "saleStart": "1717200000",
-            "saleEnd": "18446744073709551615"
-        },
-        "mintToCreatorCount": 1
-    },
-    "account": "0xCreatorAddress"
-}
-response = requests.post(url, json=payload)
-print(response.json())
-```
-
-```javascript [JavaScript]
-const response = await fetch(
-  "https://inprocess.fun/api/moment/create/writing",
-  {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      contractAddress: "0xExistingContractAddress",
-      token: {
-        tokenContent: "Hello world",
-        createReferral: "0xReferralAddress",
-        salesConfig: {
-          type: "fixedPrice",
-          pricePerToken: "100000000000000000",
-          saleStart: "1717200000",
-          saleEnd: "18446744073709551615",
-        },
-        mintToCreatorCount: 1,
-      },
-      account: "0xCreatorAddress",
-    }),
-  }
-);
-const data = await response.json();
-console.log(data);
-```
-
-```typescript [TypeScript]
-interface SalesConfig {
-  type: "fixedPrice" | "erc20Mint";
-  pricePerToken: string;
-  saleStart: string; // Unix timestamp as string
-  saleEnd: string; // Unix timestamp as string
-  currency?: string; // Optional: ERC20 token address
-}
-
-interface Split {
-  address: string;
-  percentAllocation: number; // 0-100
-}
-
-interface AddToExistingContractRequest {
-  contractAddress: string;
-  token: {
-    tokenContent: string;
-    createReferral: string;
-    salesConfig: SalesConfig;
-    mintToCreatorCount: number;
-    payoutRecipient?: string; // Optional
-  };
-  splits?: Split[]; // Optional
-  account: string;
-}
-
-const payload: AddToExistingContractRequest = {
-  contractAddress: "0xExistingContractAddress",
-  token: {
-    tokenContent: "Hello world",
-    createReferral: "0xReferralAddress",
-    salesConfig: {
-      type: "fixedPrice",
-      pricePerToken: "100000000000000000",
-      saleStart: "1717200000",
-      saleEnd: "18446744073709551615",
-    },
-    mintToCreatorCount: 1,
-  },
   account: "0xCreatorAddress",
 };
 
