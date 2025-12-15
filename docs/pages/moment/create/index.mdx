@@ -54,9 +54,9 @@ POST https://inprocess.fun/api/moment/create
 curl -X POST https://inprocess.fun/api/moment/create \
   -H "Content-Type: application/json" \
   -d '{
-    "contractAddress": "0xExistingContractAddress",
+    "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     "token": {
-      "tokenMetadataURI": "https://arweave.net/abc123",
+      "tokenMetadataURI": "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
       "createReferral": "0xReferralAddress",
       "salesConfig": {
         "type": "fixedPrice",
@@ -87,9 +87,9 @@ import requests
 
 url = "https://inprocess.fun/api/moment/create"
 payload = {
-    "contractAddress": "0xExistingContractAddress",
+    "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     "token": {
-        "tokenMetadataURI": "https://arweave.net/abc123",
+        "tokenMetadataURI": "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
         "createReferral": "0xReferralAddress",
         "salesConfig": {
             "type": "fixedPrice",
@@ -122,9 +122,9 @@ const response = await fetch("https://inprocess.fun/api/moment/create", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify({
-    contractAddress: "0xExistingContractAddress",
+    contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     token: {
-      tokenMetadataURI: "https://arweave.net/abc123",
+      tokenMetadataURI: "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
       createReferral: "0xReferralAddress",
       salesConfig: {
         type: "fixedPrice",
@@ -181,9 +181,9 @@ interface CreateMomentRequest {
 }
 
 const payload: CreateMomentRequest = {
-  contractAddress: "0xExistingContractAddress",
+  contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
   token: {
-    tokenMetadataURI: "https://arweave.net/abc123",
+    tokenMetadataURI: "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
     createReferral: "0xReferralAddress",
     salesConfig: {
       type: "fixedPrice",
