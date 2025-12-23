@@ -6,12 +6,12 @@ title: Create a Writing Moment
 
 This page documents the API endpoint for creating a new Writing Moment on the In Process protocol. No signature is required for this endpoint.
 
-The API supports two modes:
+The API uses a unified `contract` object that supports both creating writing moments on existing collections and creating new collections:
 
-1. **Create a writing moment on an existing collection** - Use `contractAddress` to add a writing moment to a collection you've already created
-2. **Create a new collection and writing moment** - Use `contract` with `name` and `uri` to create both a new collection and its first writing moment in a single request
+- **Use existing collection**: Provide `contract.address` to add a writing moment to a collection you've already created
+- **Create new collection**: Provide `contract.name` and `contract.uri` to create both a new collection and its first writing moment in a single request
 
-> **Note:** If you want to add writing moments to an existing collection, you must have already [created a Collection](/collections/create) first. Alternatively, you can create a new collection and its first writing moment together using Option 2.
+> **Note:** If you want to add writing moments to an existing collection, you must have already [created a Collection](/collections/create) first. Alternatively, you can create a new collection and its first writing moment together by providing `contract.name` and `contract.uri`.
 
 ## Endpoint
 
@@ -21,52 +21,18 @@ POST https://inprocess.fun/api/moment/create/writing
 
 ## Request Body
 
-The API accepts one of two request body formats:
+The API uses a unified request format with a `contract` object. The behavior depends on what fields are provided:
 
-### Option 1: Create Writing Moment on Existing Collection
-
-Use this format when you want to add a writing moment to an existing collection:
+- **If `contract.address` is provided**: The writing moment will be added to the existing collection at that address
+- **If `contract.name` and `contract.uri` are provided** (and `address` is not): A new collection will be created with the specified name and URI, and the writing moment will be added to it
 
 ```json
 {
   "title": "string",
-  "contractAddress": "string", // Address of existing collection
-  "token": {
-    "tokenContent": "string", // Writing content for the token (e.g., "Hello world")
-    "createReferral": "string", // Referral recipient address
-    "salesConfig": {
-      "type": "string", // "fixedPrice" | "erc20Mint"
-      "pricePerToken": "string", // Price in wei (18 decimals)
-      "saleStart": "1717200000", // Unix timestamp as string
-      "saleEnd": "18446744073709551615", // Unix timestamp as string
-      "currency": "string" // Optional: ERC20 token address (defaults to native token if not provided)
-    },
-    "mintToCreatorCount": 1, // Number of tokens to mint to creator (usually 1)
-    "payoutRecipient": "string" // Optional: Address to receive sale proceeds (defaults to creator if not provided)
-  },
-  "splits": [
-    {
-      "address": "string", // Recipient address
-      "percentAllocation": 60 // Allocation percentage (0-100)
-    },
-    {
-      "address": "string", // Recipient address
-      "percentAllocation": 40 // Allocation percentage (0-100)
-    }
-  ], // Optional: Splits configuration for revenue sharing (must sum to 100% and have at least 2 recipients)
-  "account": "string" // Creator's address
-}
-```
-
-### Option 2: Create New Collection and Writing Moment
-
-Use this format when you want to create both a new collection and its first writing moment in a single request:
-
-```json
-{
   "contract": {
-    "name": "string", // Collection name
-    "uri": "string" // Collection metadata URI (e.g., ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE)
+    "address": "string", // Optional: Address of existing collection (if provided, uses existing collection)
+    "name": "string", // Optional: Collection name (required if address is not provided)
+    "uri": "string" // Optional: Collection metadata URI (required if address is not provided)
   },
   "token": {
     "tokenContent": "string", // Writing content for the token (e.g., "Hello world")
@@ -94,10 +60,15 @@ Use this format when you want to create both a new collection and its first writ
   "account": "string" // Creator's address
 }
 ```
+
+### Contract Object Behavior
+
+- **Priority**: If `contract.address` is present, it takes priority and the writing moment will be added to that existing collection
+- **Fallback**: If `contract.address` is not present, `contract.name` and `contract.uri` must be provided to create a new collection
 
 ## Example Request
 
-### Option 1: Create Writing Moment on Existing Collection
+### Example 1: Create Writing Moment on Existing Collection
 
 :::code-group
 
@@ -106,7 +77,9 @@ curl -X POST https://inprocess.fun/api/moment/create/writing \
   -H "Content-Type: application/json" \
   -d '{
     "title": "My Writing Moment",
-    "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+    "contract": {
+      "address": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7"
+    },
     "token": {
       "tokenContent": "Hello world",
       "createReferral": "0xReferralAddress",
@@ -140,7 +113,9 @@ import requests
 url = "https://inprocess.fun/api/moment/create/writing"
 payload = {
     "title": "My Writing Moment",
-    "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+    "contract": {
+        "address": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7"
+    },
     "token": {
         "tokenContent": "Hello world",
         "createReferral": "0xReferralAddress",
@@ -178,7 +153,9 @@ const response = await fetch(
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       title: "My Writing Moment",
-      contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+      contract: {
+        address: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+      },
       token: {
         tokenContent: "Hello world",
         createReferral: "0xReferralAddress",
@@ -224,10 +201,14 @@ interface Split {
   percentAllocation: number; // 0-100
 }
 
-// For creating a writing moment on an existing collection
-interface CreateWritingMomentOnExistingCollectionRequest {
+// Unified request interface - contract.address for existing, contract.name/uri for new
+interface CreateWritingMomentRequest {
   title: string;
-  contractAddress: string;
+  contract: {
+    address?: string; // If provided, uses existing collection
+    name?: string; // Required if address is not provided
+    uri?: string; // Required if address is not provided
+  };
   token: {
     tokenContent: string;
     createReferral: string;
@@ -239,9 +220,12 @@ interface CreateWritingMomentOnExistingCollectionRequest {
   account: string;
 }
 
-const payload: CreateWritingMomentOnExistingCollectionRequest = {
+// Example: Create writing moment on existing collection
+const payload: CreateWritingMomentRequest = {
   title: "My Writing Moment",
-  contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+  contract: {
+    address: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+  },
   token: {
     tokenContent: "Hello world",
     createReferral: "0xReferralAddress",
@@ -282,7 +266,7 @@ console.log(data);
 
 :::
 
-### Option 2: Create New Collection and Writing Moment
+### Example 2: Create New Collection and Writing Moment
 
 :::code-group
 
@@ -415,11 +399,13 @@ interface Split {
   percentAllocation: number; // 0-100
 }
 
-// For creating a new collection and writing moment
-interface CreateWritingMomentWithNewCollectionRequest {
+// Unified request interface - contract.address for existing, contract.name/uri for new
+interface CreateWritingMomentRequest {
+  title: string;
   contract: {
-    name: string;
-    uri: string;
+    address?: string; // If provided, uses existing collection
+    name?: string; // Required if address is not provided
+    uri?: string; // Required if address is not provided
   };
   token: {
     tokenContent: string;
@@ -432,7 +418,9 @@ interface CreateWritingMomentWithNewCollectionRequest {
   account: string;
 }
 
-const payload: CreateWritingMomentWithNewCollectionRequest = {
+// Example: Create new collection and writing moment
+const payload: CreateWritingMomentRequest = {
+  title: "My Writing Moment",
   contract: {
     name: "My Collection",
     uri: "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
