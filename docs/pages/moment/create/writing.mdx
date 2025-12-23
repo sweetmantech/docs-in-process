@@ -29,6 +29,7 @@ Use this format when you want to add a writing moment to an existing collection:
 
 ```json
 {
+  "title": "string",
   "contractAddress": "string", // Address of existing collection
   "token": {
     "tokenContent": "string", // Writing content for the token (e.g., "Hello world")
@@ -104,6 +105,7 @@ Use this format when you want to create both a new collection and its first writ
 curl -X POST https://inprocess.fun/api/moment/create/writing \
   -H "Content-Type: application/json" \
   -d '{
+    "title": "My Writing Moment",
     "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     "token": {
       "tokenContent": "Hello world",
@@ -137,6 +139,7 @@ import requests
 
 url = "https://inprocess.fun/api/moment/create/writing"
 payload = {
+    "title": "My Writing Moment",
     "contractAddress": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
     "token": {
         "tokenContent": "Hello world",
@@ -174,6 +177,7 @@ const response = await fetch(
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      title: "My Writing Moment",
       contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
       token: {
         tokenContent: "Hello world",
@@ -222,6 +226,7 @@ interface Split {
 
 // For creating a writing moment on an existing collection
 interface CreateWritingMomentOnExistingCollectionRequest {
+  title: string;
   contractAddress: string;
   token: {
     tokenContent: string;
@@ -235,6 +240,7 @@ interface CreateWritingMomentOnExistingCollectionRequest {
 }
 
 const payload: CreateWritingMomentOnExistingCollectionRequest = {
+  title: "My Writing Moment",
   contractAddress: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
   token: {
     tokenContent: "Hello world",
