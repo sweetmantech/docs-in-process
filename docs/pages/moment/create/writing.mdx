@@ -16,7 +16,7 @@ The API uses a unified `contract` object that supports both creating writing mom
 ## Endpoint
 
 ```
-POST https://inprocess.fun/api/moment/create/writing
+POST https://inprocess.world/api/moment/create/writing
 ```
 
 ## Request Body
@@ -73,7 +73,7 @@ The API uses a unified request format with a `contract` object. The behavior dep
 :::code-group
 
 ```bash [cURL]
-curl -X POST https://inprocess.fun/api/moment/create/writing \
+curl -X POST https://inprocess.world/api/moment/create/writing \
   -H "Content-Type: application/json" \
   -d '{
     "title": "My Writing Moment",
@@ -110,7 +110,7 @@ curl -X POST https://inprocess.fun/api/moment/create/writing \
 ```python [Python]
 import requests
 
-url = "https://inprocess.fun/api/moment/create/writing"
+url = "https://inprocess.world/api/moment/create/writing"
 payload = {
     "title": "My Writing Moment",
     "contract": {
@@ -147,7 +147,7 @@ print(response.json())
 
 ```javascript [JavaScript]
 const response = await fetch(
-  "https://inprocess.fun/api/moment/create/writing",
+  "https://inprocess.world/api/moment/create/writing",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -253,7 +253,7 @@ const payload: CreateWritingMomentRequest = {
 };
 
 const response = await fetch(
-  "https://inprocess.fun/api/moment/create/writing",
+  "https://inprocess.world/api/moment/create/writing",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -271,7 +271,7 @@ console.log(data);
 :::code-group
 
 ```bash [cURL]
-curl -X POST https://inprocess.fun/api/moment/create/writing \
+curl -X POST https://inprocess.world/api/moment/create/writing \
   -H "Content-Type: application/json" \
   -d '{
     "contract": {
@@ -308,7 +308,7 @@ curl -X POST https://inprocess.fun/api/moment/create/writing \
 ```python [Python]
 import requests
 
-url = "https://inprocess.fun/api/moment/create/writing"
+url = "https://inprocess.world/api/moment/create/writing"
 payload = {
     "contract": {
         "name": "My Collection",
@@ -345,7 +345,7 @@ print(response.json())
 
 ```javascript [JavaScript]
 const response = await fetch(
-  "https://inprocess.fun/api/moment/create/writing",
+  "https://inprocess.world/api/moment/create/writing",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -452,7 +452,7 @@ const payload: CreateWritingMomentRequest = {
 };
 
 const response = await fetch(
-  "https://inprocess.fun/api/moment/create/writing",
+  "https://inprocess.world/api/moment/create/writing",
   {
     method: "POST",
     headers: { "Content-Type": "application/json" },

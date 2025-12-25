@@ -9,7 +9,7 @@ Browse collections from the In Process protocol. This endpoint can retrieve coll
 ## Endpoint
 
 ```http
-GET https://inprocess.fun/api/collections
+GET https://inprocess.world/api/collections
 ```
 
 ## Parameters
@@ -35,14 +35,14 @@ You can filter by chain using the `chain_id` parameter (default: 8453 for Base).
 :::code-group
 
 ```bash [cURL]
-curl -X GET "https://inprocess.fun/api/collections?artist=0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01&limit=10&page=1&chain_id=8453"
+curl -X GET "https://inprocess.world/api/collections?artist=0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01&limit=10&page=1&chain_id=8453"
 ```
 
 ```python [Python]
 import requests
 
 def get_collections(artist: str | None = None, page: int = 1, limit: int = 100, chain_id: int = 8453):
-    url = "https://inprocess.fun/api/collections"
+    url = "https://inprocess.world/api/collections"
     params = {
         "page": page,
         "limit": limit,
@@ -69,7 +69,7 @@ async function getCollections(
   });
   if (artist) params.set("artist", artist);
   const response = await fetch(
-    `https://inprocess.fun/api/collections?${params}`
+    `https://inprocess.world/api/collections?${params}`
   );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
@@ -116,7 +116,7 @@ async function getCollections(
   });
   if (artist) params.set("artist", artist);
   const response = await fetch(
-    `https://inprocess.fun/api/collections?${params}`
+    `https://inprocess.world/api/collections?${params}`
   );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
@@ -130,14 +130,14 @@ async function getCollections(
 :::code-group
 
 ```bash [cURL]
-curl -X GET "https://inprocess.fun/api/collections?chain_id=8453&limit=10&page=1"
+curl -X GET "https://inprocess.world/api/collections?chain_id=8453&limit=10&page=1"
 ```
 
 ```python [Python]
 import requests
 
 def get_collections(artist: str | None = None, page: int = 1, limit: int = 100, chain_id: int = 8453):
-    url = "https://inprocess.fun/api/collections"
+    url = "https://inprocess.world/api/collections"
     params = {
         "page": page,
         "limit": limit,
@@ -167,7 +167,7 @@ async function getCollections(
   });
   if (artist) params.set("artist", artist);
   const response = await fetch(
-    `https://inprocess.fun/api/collections?${params}`
+    `https://inprocess.world/api/collections?${params}`
   );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
@@ -217,7 +217,7 @@ async function getCollections(
   });
   if (artist) params.set("artist", artist);
   const response = await fetch(
-    `https://inprocess.fun/api/collections?${params}`
+    `https://inprocess.world/api/collections?${params}`
   );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
