@@ -90,6 +90,10 @@ export default defineConfig({
           link: "/moment/update-uri",
         },
         {
+          text: "Add Permission to a Moment",
+          link: "/moment/permission",
+        },
+        {
           text: "Upload to Arweave",
           link: "/upload-to-arweave",
         },
