@@ -94,6 +94,10 @@ export default defineConfig({
           link: "/moment/permission",
         },
         {
+          text: "Remove Admin from a Moment",
+          link: "/moment/permission/remove",
+        },
+        {
           text: "Upload to Arweave",
           link: "/upload-to-arweave",
         },
