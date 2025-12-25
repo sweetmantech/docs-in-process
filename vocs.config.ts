@@ -90,7 +90,7 @@ export default defineConfig({
           link: "/moment/update-uri",
         },
         {
-          text: "Add Permission to a Moment",
+          text: "Add Admin to a Moment",
           link: "/moment/permission",
         },
         {
