@@ -9,7 +9,7 @@ Retrieve payment records from the In Process protocol. Supports filtering by art
 ## Endpoint
 
 ```http
-GET https://inprocess.fun/api/payments
+GET https://inprocess.world/api/payments
 ```
 
 ## Parameters
@@ -26,14 +26,14 @@ If no parameters are provided, returns the latest payment records. If `collector
 :::code-group
 
 ```bash [cURL]
-curl -X GET "https://inprocess.fun/api/payments?artist=0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01&collector=0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A"
+curl -X GET "https://inprocess.world/api/payments?artist=0x29b6674c1562e31EdFd9709D9576e8E5F1e68d01&collector=0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A"
 ```
 
 ```python [Python]
 import requests
 
 def get_payments(artist: str = None, collector: str = None):
-    url = "https://inprocess.fun/api/payments"
+    url = "https://inprocess.world/api/payments"
     params = {}
     if artist:
         params["artist"] = artist
@@ -49,7 +49,9 @@ async function getPayments(artist, collector) {
   const params = new URLSearchParams();
   if (artist) params.set("artist", artist);
   if (collector) params.set("collector", collector);
-  const response = await fetch(`https://inprocess.fun/api/payments?${params}`);
+  const response = await fetch(
+    `https://inprocess.world/api/payments?${params}`
+  );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
@@ -97,7 +99,9 @@ async function getPayments(
   const params = new URLSearchParams();
   if (artist) params.set("artist", artist);
   if (collector) params.set("collector", collector);
-  const response = await fetch(`https://inprocess.fun/api/payments?${params}`);
+  const response = await fetch(
+    `https://inprocess.world/api/payments?${params}`
+  );
   if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
   return await response.json();
 }
