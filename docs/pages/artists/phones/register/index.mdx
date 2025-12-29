@@ -1,0 +1,171 @@
+---
+title: Register a Phone Number
+---
+
+# Register a Phone Number
+
+This page documents the API endpoint for registering a phone number for artists on the In Process protocol. After registration, a verification SMS message will be sent to the provided phone number.
+
+## Overview
+
+Artists can register their phone number to enable SMS-based features and notifications.
+
+1. An SMS verification message is automatically sent to the provided phone number.
+
+   <br />
+   For example:
+
+   > Someone is trying to connect this phone number to the artist profile for sweetman.eth on In Process. If this was you, please reply 'yes'. If this was not you, please ignore this message.
+
+2. If the artist replies "yes", the artist's phone number will be verified.
+
+## Endpoint
+
+```http
+POST https://inprocess.world/api/phones
+```
+
+## Authentication
+
+Include an API key in the x-api-key header for authorization:
+
+```http
+x-api-key: <artist_api_key>
+```
+
+<details>
+<summary>Show more</summary>
+
+See [Create an Artist API Key](/artists/api-keys/create) for how to create API keys.
+
+</details>
+
+## Request Body
+
+Send a JSON object with the following fields:
+
+```json
+{
+  "phone_number": "string" // Phone number in E.164 format (e.g., "+1234567890")
+}
+```
+
+### Body Parameters
+
+| Name         | Type   | Required | Description                                                          |
+| ------------ | ------ | -------- | -------------------------------------------------------------------- |
+| phone_number | string | Yes      | Phone number in E.164 format (e.g., "+1234567890" or "+14155552671") |
+
+## Example Requests
+
+:::code-group
+
+```bash [cURL]
+curl -X POST https://inprocess.world/api/phones \
+  -H "Content-Type: application/json" \
+  -H "x-api-key: art_sk_3fnm4...f6w4" \
+  -d '{
+    "phone_number": "+14155552671"
+  }'
+```
+
+```python [Python]
+import requests
+
+url = "https://inprocess.world/api/phones"
+headers = {
+  "Content-Type": "application/json",
+  "x-api-key": "art_sk_3fnm4...f6w4"
+}
+payload = {
+  "phone_number": "+14155552671"
+}
+response = requests.post(url, json=payload, headers=headers)
+print(response.json())
+```
+
+```javascript [JavaScript]
+const response = await fetch("https://inprocess.world/api/phones", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "art_sk_3fnm4...f6w4",
+  },
+  body: JSON.stringify({
+    phone_number: "+14155552671",
+  }),
+});
+const data = await response.json();
+console.log(data);
+```
+
+```typescript [TypeScript]
+interface RegisterPhoneRequest {
+  phone_number: string;
+}
+
+const payload: RegisterPhoneRequest = {
+  phone_number: "+14155552671",
+};
+
+const response = await fetch("https://inprocess.world/api/phones", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "x-api-key": "art_sk_3fnm4...f6w4",
+  },
+  body: JSON.stringify(payload),
+});
+const data = await response.json();
+console.log(data);
+```
+
+:::
+
+## Example Response
+
+### Success Response
+
+```json
+{
+  "success": true,
+  "message": "Phone number registered and verification message sent"
+}
+```
+
+### Response Fields
+
+| Name    | Type    | Description                                      |
+| ------- | ------- | ------------------------------------------------ |
+| success | boolean | Indicates whether the operation was successful   |
+| message | string  | A descriptive message about the operation result |
+
+## Error Responses
+
+### Validation Error (400)
+
+If the request body is invalid or the phone number format is incorrect:
+
+```json
+{
+  "message": "Invalid request body"
+}
+```
+
+### Server Error (500)
+
+If an error occurs during phone number registration or SMS sending:
+
+```json
+{
+  "message": "Failed to register phone number"
+}
+```
+
+## Notes
+
+- The phone number is stored with `verified: false` status initially
+- An SMS verification message is automatically sent to the provided phone number after successful registration
+- The SMS message includes the artist's username (if available) or a truncated version of their wallet address
+- Phone numbers should be provided in E.164 format (international format with country code, e.g., "+1234567890")
+- If a phone number already exists for the artist, it will be updated (upsert operation)

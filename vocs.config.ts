@@ -138,6 +138,10 @@ export default defineConfig({
       text: "Artists",
       items: [
         {
+          text: "Create an Artist API Key",
+          link: "/artists/api-keys/create",
+        },
+        {
           text: "Get an Artist Wallet",
           link: "/artists/wallets",
         },
@@ -149,9 +153,10 @@ export default defineConfig({
           text: "Disconnect a Social Wallet",
           link: "/artists/wallets/disconnect",
         },
+
         {
-          text: "Create an Artist API Key",
-          link: "/artists/api-keys/create",
+          text: "Register a Phone Number",
+          link: "/artists/phones/register",
         },
       ],
     },
