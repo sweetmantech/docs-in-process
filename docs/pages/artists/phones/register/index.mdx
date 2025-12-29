@@ -164,8 +164,4 @@ If an error occurs during phone number registration or SMS sending:
 
 ## Notes
 
-- The phone number is stored with `verified: false` status initially
-- An SMS verification message is automatically sent to the provided phone number after successful registration
-- The SMS message includes the artist's username (if available) or a truncated version of their wallet address
 - Phone numbers should be provided in E.164 format (international format with country code, e.g., "+1234567890")
-- If a phone number already exists for the artist, it will be updated (upsert operation)
