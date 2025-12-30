@@ -1,14 +1,14 @@
 ---
-title: Register a Phone Number
+title: Connect a Phone Number
 ---
 
-# Register a Phone Number
+# Connect a Phone Number
 
-This page documents the API endpoint for registering a phone number for artists on the In Process protocol. After registration, a verification SMS message will be sent to the provided phone number.
+This page documents the API endpoint for connecting a phone number for artists on the In Process protocol. After connection, a verification SMS message will be sent to the provided phone number.
 
 ## Overview
 
-Artists can register their phone number to enable SMS-based features and notifications.
+Artists can connect their phone number to enable SMS-based features and notifications.
 
 1. An SMS verification message is automatically sent to the provided phone number.
 
@@ -100,11 +100,11 @@ console.log(data);
 ```
 
 ```typescript [TypeScript]
-interface RegisterPhoneRequest {
+interface ConnectPhoneRequest {
   phone_number: string;
 }
 
-const payload: RegisterPhoneRequest = {
+const payload: ConnectPhoneRequest = {
   phone_number: "+14155552671",
 };
 
@@ -129,7 +129,7 @@ console.log(data);
 ```json
 {
   "success": true,
-  "message": "Phone number registered and verification message sent"
+  "message": "Phone number connected and verification message sent"
 }
 ```
 
@@ -154,11 +154,11 @@ If the request body is invalid or the phone number format is incorrect:
 
 ### Server Error (500)
 
-If an error occurs during phone number registration or SMS sending:
+If an error occurs during phone number connection or SMS sending:
 
 ```json
 {
-  "message": "Failed to register phone number"
+  "message": "Failed to connect phone number"
 }
 ```
 
