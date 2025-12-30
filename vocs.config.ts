@@ -155,8 +155,8 @@ export default defineConfig({
         },
 
         {
-          text: "Register a Phone Number",
-          link: "/artists/phones/register",
+          text: "Connect a Phone Number",
+          link: "/artists/phones/connect",
         },
         {
           text: "Disconnect a Phone Number",
