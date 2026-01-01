@@ -44,7 +44,8 @@ The API uses a unified request format with a `contract` object. The behavior dep
       "currency": "string" // Optional
     },
     "mintToCreatorCount": 1,
-    "payoutRecipient": "string" // Optional
+    "payoutRecipient": "string", // Optional
+    "maxSupply": 1000 // Optional: Maximum number of tokens that can be minted (integer, min 1)
   },
   "splits": [
     {
@@ -89,7 +90,8 @@ curl -X POST https://inprocess.world/api/moment/create \
         "currency": "0xERC20TokenAddress"
       },
       "mintToCreatorCount": 1,
-      "payoutRecipient": "0xPayoutAddress"
+      "payoutRecipient": "0xPayoutAddress",
+      "maxSupply": 1000
     },
     "splits": [
       {
@@ -116,15 +118,16 @@ payload = {
     "token": {
         "tokenMetadataURI": "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
         "createReferral": "0xReferralAddress",
-        "salesConfig": {
-            "type": "fixedPrice",
-            "pricePerToken": "100000000000000000",
-            "saleStart": "1717200000",
-            "saleEnd": "18446744073709551615",
-            "currency": "0xERC20TokenAddress"  # Optional
-        },
+            "salesConfig": {
+                "type": "fixedPrice",
+                "pricePerToken": "100000000000000000",
+                "saleStart": "1717200000",
+                "saleEnd": "18446744073709551615",
+                "currency": "0xERC20TokenAddress"  # Optional
+            },
         "mintToCreatorCount": 1,
-        "payoutRecipient": "0xPayoutAddress"  # Optional
+        "payoutRecipient": "0xPayoutAddress",  # Optional
+        "maxSupply": 1000  # Optional
     },
     "splits": [
         {
@@ -153,15 +156,16 @@ const response = await fetch("https://inprocess.world/api/moment/create", {
     token: {
       tokenMetadataURI: "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
       createReferral: "0xReferralAddress",
-      salesConfig: {
-        type: "fixedPrice",
-        pricePerToken: "100000000000000000",
-        saleStart: "1717200000",
-        saleEnd: "18446744073709551615",
-        currency: "0xERC20TokenAddress", // Optional
-      },
+        salesConfig: {
+          type: "fixedPrice",
+          pricePerToken: "100000000000000000",
+          saleStart: "1717200000",
+          saleEnd: "18446744073709551615",
+          currency: "0xERC20TokenAddress", // Optional
+        },
       mintToCreatorCount: 1,
       payoutRecipient: "0xPayoutAddress", // Optional
+      maxSupply: 1000, // Optional
     },
     splits: [
       {
@@ -207,6 +211,7 @@ interface CreateMomentRequest {
     salesConfig: SalesConfig;
     mintToCreatorCount: number;
     payoutRecipient?: string; // Optional
+    maxSupply?: number; // Optional: Maximum number of tokens that can be minted (integer, min 1)
   };
   splits?: Split[]; // Optional
   account: string;
@@ -229,6 +234,7 @@ const payload: CreateMomentRequest = {
     },
     mintToCreatorCount: 1,
     payoutRecipient: "0xPayoutAddress", // Optional
+    maxSupply: 1000, // Optional
   },
   splits: [
     {
@@ -277,7 +283,8 @@ curl -X POST https://inprocess.world/api/moment/create \
         "currency": "0xERC20TokenAddress"
       },
       "mintToCreatorCount": 1,
-      "payoutRecipient": "0xPayoutAddress"
+      "payoutRecipient": "0xPayoutAddress",
+      "maxSupply": 1000
     },
     "splits": [
       {
@@ -305,15 +312,16 @@ payload = {
     "token": {
         "tokenMetadataURI": "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
         "createReferral": "0xReferralAddress",
-        "salesConfig": {
-            "type": "fixedPrice",
-            "pricePerToken": "100000000000000000",
-            "saleStart": "1717200000",
-            "saleEnd": "18446744073709551615",
-            "currency": "0xERC20TokenAddress"  # Optional
-        },
+            "salesConfig": {
+                "type": "fixedPrice",
+                "pricePerToken": "100000000000000000",
+                "saleStart": "1717200000",
+                "saleEnd": "18446744073709551615",
+                "currency": "0xERC20TokenAddress"  # Optional
+            },
         "mintToCreatorCount": 1,
-        "payoutRecipient": "0xPayoutAddress"  # Optional
+        "payoutRecipient": "0xPayoutAddress",  # Optional
+        "maxSupply": 1000  # Optional
     },
     "splits": [
         {
@@ -343,15 +351,16 @@ const response = await fetch("https://inprocess.world/api/moment/create", {
     token: {
       tokenMetadataURI: "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
       createReferral: "0xReferralAddress",
-      salesConfig: {
-        type: "fixedPrice",
-        pricePerToken: "100000000000000000",
-        saleStart: "1717200000",
-        saleEnd: "18446744073709551615",
-        currency: "0xERC20TokenAddress", // Optional
-      },
+        salesConfig: {
+          type: "fixedPrice",
+          pricePerToken: "100000000000000000",
+          saleStart: "1717200000",
+          saleEnd: "18446744073709551615",
+          currency: "0xERC20TokenAddress", // Optional
+        },
       mintToCreatorCount: 1,
       payoutRecipient: "0xPayoutAddress", // Optional
+      maxSupply: 1000, // Optional
     },
     splits: [
       {
@@ -397,6 +406,7 @@ interface CreateMomentRequest {
     salesConfig: SalesConfig;
     mintToCreatorCount: number;
     payoutRecipient?: string; // Optional
+    maxSupply?: number; // Optional: Maximum number of tokens that can be minted (integer, min 1)
   };
   splits?: Split[]; // Optional
   account: string;
@@ -420,6 +430,7 @@ const payload: CreateMomentRequest = {
     },
     mintToCreatorCount: 1,
     payoutRecipient: "0xPayoutAddress", // Optional
+    maxSupply: 1000, // Optional
   },
   splits: [
     {
@@ -441,6 +452,62 @@ const response = await fetch("https://inprocess.world/api/moment/create", {
 });
 const data = await response.json();
 console.log(data);
+```
+
+:::
+
+### Example 3: Create Open Edition Moment (Unlimited Supply)
+
+This example shows how to create an open edition moment without a supply limit:
+
+:::code-group
+
+```bash [cURL]
+curl -X POST https://inprocess.world/api/moment/create \
+  -H "Content-Type: application/json" \
+  -d '{
+    "contract": {
+      "address": "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7"
+    },
+    "token": {
+      "tokenMetadataURI": "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
+      "createReferral": "0xReferralAddress",
+      "salesConfig": {
+        "type": "fixedPrice",
+        "pricePerToken": "100000000000000000",
+        "saleStart": "1717200000",
+        "saleEnd": "18446744073709551615"
+      },
+      "mintToCreatorCount": 1,
+      "payoutRecipient": "0xPayoutAddress"
+    },
+    "account": "0xCreatorAddress"
+  }'
+```
+
+```typescript [TypeScript]
+// Example: Create open edition moment (unlimited supply)
+// Note: maxSupply is omitted
+const payload: CreateMomentRequest = {
+  contract: {
+    address: "0xa78f8a4465a3e7e5901f6757ff53b799fb35ffd7",
+  },
+  token: {
+    tokenMetadataURI: "ar://xLM9yGfj8Lo_zUWE1AEjD2gwgySBFQfpgghoQnfGLNE",
+    createReferral: "0xReferralAddress",
+        salesConfig: {
+          type: "fixedPrice",
+          pricePerToken: "100000000000000000",
+          saleStart: "1717200000",
+          saleEnd: "18446744073709551615",
+          currency: "0xERC20TokenAddress", // Optional
+        },
+    mintToCreatorCount: 1,
+    payoutRecipient: "0xPayoutAddress", // Optional
+    // maxSupply is omitted - this creates an open edition
+  },
+  account: "0xCreatorAddress",
+};
 ```
 
 :::
@@ -473,6 +540,50 @@ You can optionally configure revenue splits to automatically distribute sale pro
   - `percentAllocation`: The percentage allocation (0-100)
 
 To learn more about Splits Configuration, see the [Splits Configuration Reference](/moment/create/splits).
+
+## Token Configuration
+
+The `token` object contains the following fields:
+
+- **tokenMetadataURI**: The URI pointing to the token's metadata (e.g., Arweave URI)
+- **createReferral**: The address that will receive referral rewards for this moment creation
+- **salesConfig**: Configuration for how the token can be sold (see [Sales Configuration](#sales-configuration) below)
+- **mintToCreatorCount**: Number of tokens to mint to the creator upon creation (typically `1`)
+- **payoutRecipient**: (Optional) Address that will receive sale proceeds. If splits are configured, this will be automatically set to the splits contract address
+- **maxSupply**: (Optional) Maximum number of tokens that can be minted. Must be an integer >= 1. If not provided, the token will be an open edition with unlimited supply
+
+### maxSupply Parameter
+
+The `maxSupply` parameter controls whether your moment is a **limited edition** or an **open edition**:
+
+- **Limited Edition**: When `maxSupply` is provided (e.g., `1000`), only that many tokens can be minted. Once the limit is reached, no more tokens can be minted.
+- **Open Edition**: When `maxSupply` is omitted, the token has unlimited supply and can be minted indefinitely (until the sale ends, if configured).
+
+**Examples:**
+
+```json
+// Limited edition: Maximum 1000 tokens
+{
+  "token": {
+    "tokenMetadataURI": "ar://...",
+    "createReferral": "0x...",
+    "salesConfig": { ... },
+    "mintToCreatorCount": 1,
+    "maxSupply": 1000
+  }
+}
+
+// Open edition: Unlimited supply
+{
+  "token": {
+    "tokenMetadataURI": "ar://...",
+    "createReferral": "0x...",
+    "salesConfig": { ... },
+    "mintToCreatorCount": 1
+    // maxSupply is omitted
+  }
+}
+```
 
 ## Sales Configuration
 
