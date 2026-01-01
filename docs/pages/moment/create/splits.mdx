@@ -1,39 +1,60 @@
 ## Splits Configuration Reference
 
-The `splits` object defines how revenue from moment sales will be distributed among multiple recipients. This configuration is optional.
+The `splits` array defines how revenue from moment sales will be distributed among multiple recipients. This configuration is optional.
 
 ### Splits Structure
 
+`splits` is an array of objects, where each object contains:
+
+- **`address`**: The recipient's Ethereum address
+- **`percentAllocation`**: The percentage allocation (0-100)
+
 ```json
 {
-  "splits": {
-    "recipients": ["0xRecipient1", "0xRecipient2", "0xRecipient3"],
-    "percentAllocations": [50, 30, 20]
-  }
+  "splits": [
+    {
+      "address": "0xRecipient1",
+      "percentAllocation": 50
+    },
+    {
+      "address": "0xRecipient2",
+      "percentAllocation": 30
+    },
+    {
+      "address": "0xRecipient3",
+      "percentAllocation": 20
+    }
+  ]
 }
 ```
 
-### Fields
+### Important Requirements
 
-- **`recipients`**: Array of Ethereum addresses that will receive a share of the revenue
-- **`percentAllocations`**: Array of percentages (0-100). The sum must equal 100. The backend API will validate this value.
+- Must have at least 2 recipients
+- All `percentAllocation` values must sum to exactly 100%
+- Each recipient address must be a valid Ethereum address
+- The backend API will validate these requirements
 
 ### Important Notes
 
 - The splits contract owner will be set to the creator's smart wallet
 - If `splits` is provided, the `payoutRecipient` in the token configuration will be automatically set to the splits contract address
 - If `splits` is not provided, you can optionally specify a `payoutRecipient` directly in the token configuration
-- The `percentAllocations` array must have the same length as the `recipients` array
-- The sum of all `percentAllocations` must equal exactly 100. The backend API will validate this value.
 
 ### Example: Two-Way Split
 
 ```json
 {
-  "splits": {
-    "recipients": ["0xRecipient1", "0xRecipient2"],
-    "percentAllocations": [60, 40] // 60% and 40%
-  }
+  "splits": [
+    {
+      "address": "0xRecipient1",
+      "percentAllocation": 60
+    },
+    {
+      "address": "0xRecipient2",
+      "percentAllocation": 40
+    }
+  ]
 }
 ```
 
@@ -41,9 +62,19 @@ The `splits` object defines how revenue from moment sales will be distributed am
 
 ```json
 {
-  "splits": {
-    "recipients": ["0xRecipient1", "0xRecipient2", "0xRecipient3"],
-    "percentAllocations": [50, 30, 20] // 50%, 30%, and 20%
-  }
+  "splits": [
+    {
+      "address": "0xRecipient1",
+      "percentAllocation": 50
+    },
+    {
+      "address": "0xRecipient2",
+      "percentAllocation": 30
+    },
+    {
+      "address": "0xRecipient3",
+      "percentAllocation": 20
+    }
+  ]
 }
 ```
