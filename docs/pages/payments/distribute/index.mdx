@@ -1,0 +1,106 @@
+---
+title: Distribute the Payment
+---
+
+# Distribute the Payment
+
+This page documents the API endpoint for distributing payments from a split contract. This endpoint allows you to trigger the distribution of payment tokens (native or ERC20) from a split contract to its recipients according to their configured allocations.
+
+## Endpoint
+
+```http
+GET https://inprocess.world/api/distribute
+```
+
+## Query Parameters
+
+| Name         | Type   | Required | Default | Description                                                                |
+| ------------ | ------ | -------- | ------- | -------------------------------------------------------------------------- |
+| splitAddress | string | Yes      | —       | The address of the split contract to distribute from                       |
+| tokenAddress | string | Yes      | —       | The address of the token to distribute (use zero address for native token) |
+| chainId      | string | No       | 8453    | Chain ID where the split contract exists (default: Base, 8453)             |
+
+## Example Requests
+
+:::code-group
+
+```bash [cURL]
+# With chainId (optional, defaults to 8453)
+curl "https://inprocess.world/api/distribute?splitAddress=0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A&tokenAddress=0x0000000000000000000000000000000000000000&chainId=8453"
+```
+
+```python [Python]
+import requests
+
+url = "https://inprocess.world/api/distribute"
+params = {
+    "splitAddress": "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
+    "tokenAddress": "0x0000000000000000000000000000000000000000",  # Zero address for native token
+    # chainId is optional, defaults to 8453 (Base)
+    # "chainId": "8453"
+}
+response = requests.get(url, params=params)
+print(response.json())
+```
+
+```javascript [JavaScript]
+const params = new URLSearchParams({
+  splitAddress: "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
+  tokenAddress: "0x0000000000000000000000000000000000000000", // Zero address for native token
+  // chainId is optional, defaults to 8453 (Base)
+  // chainId: "8453"
+});
+
+const response = await fetch(
+  `https://inprocess.world/api/distribute?${params}`
+);
+const data = await response.json();
+console.log(data);
+```
+
+```typescript [TypeScript]
+interface DistributeParams {
+  splitAddress: string;
+  tokenAddress: string;
+  chainId?: string; // Optional, defaults to "8453" (Base)
+}
+
+const params: DistributeParams = {
+  splitAddress: "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
+  tokenAddress: "0x0000000000000000000000000000000000000000", // Zero address for native token
+  // chainId is optional, defaults to "8453" (Base)
+};
+
+const queryString = new URLSearchParams({
+  splitAddress: params.splitAddress,
+  tokenAddress: params.tokenAddress,
+});
+// Only add chainId if provided
+if (params.chainId) {
+  queryString.set("chainId", params.chainId);
+}
+
+const response = await fetch(
+  `https://inprocess.world/api/distribute?${queryString}`
+);
+const data = await response.json();
+console.log(data);
+```
+
+:::
+
+## Response
+
+```json
+{
+  "status": "success",
+  "hash": "0xTransactionHash"
+}
+```
+
+## Notes
+
+- Use the zero address (`0x0000000000000000000000000000000000000000`) for `tokenAddress` when distributing native tokens (ETH)
+- For ERC20 tokens, provide the contract address of the token
+- The payment distribution will split funds according to the allocations configured in the split contract
+- The transaction hash returned can be used to track the payment distribution onchain
