@@ -9,10 +9,13 @@ This page documents the API endpoint for distributing payments from a split cont
 ## Endpoint
 
 ```http
-GET https://inprocess.world/api/distribute
+POST https://inprocess.world/api/distribute
+Content-Type: application/json
 ```
 
-## Query Parameters
+## Request Body
+
+The request body must be sent as JSON with `Content-Type: application/json`.
 
 | Name         | Type   | Required | Default | Description                                                                |
 | ------------ | ------ | -------- | ------- | -------------------------------------------------------------------------- |
@@ -26,34 +29,44 @@ GET https://inprocess.world/api/distribute
 
 ```bash [cURL]
 # With chainId (optional, defaults to 8453)
-curl "https://inprocess.world/api/distribute?splitAddress=0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A&tokenAddress=0x0000000000000000000000000000000000000000&chainId=8453"
+curl -X POST https://inprocess.world/api/distribute \
+  -H "Content-Type: application/json" \
+  -d '{
+    "splitAddress": "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
+    "tokenAddress": "0x0000000000000000000000000000000000000000",
+    "chainId": "8453"
+  }'
 ```
 
 ```python [Python]
 import requests
 
 url = "https://inprocess.world/api/distribute"
-params = {
+payload = {
     "splitAddress": "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
     "tokenAddress": "0x0000000000000000000000000000000000000000",  # Zero address for native token
     # chainId is optional, defaults to 8453 (Base)
     # "chainId": "8453"
 }
-response = requests.get(url, params=params)
+response = requests.post(url, json=payload)
 print(response.json())
 ```
 
 ```javascript [JavaScript]
-const params = new URLSearchParams({
+const payload = {
   splitAddress: "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
   tokenAddress: "0x0000000000000000000000000000000000000000", // Zero address for native token
   // chainId is optional, defaults to 8453 (Base)
   // chainId: "8453"
-});
+};
 
-const response = await fetch(
-  `https://inprocess.world/api/distribute?${params}`
-);
+const response = await fetch("https://inprocess.world/api/distribute", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(payload),
+});
 const data = await response.json();
 console.log(data);
 ```
@@ -65,24 +78,19 @@ interface DistributeParams {
   chainId?: string; // Optional, defaults to "8453" (Base)
 }
 
-const params: DistributeParams = {
+const payload: DistributeParams = {
   splitAddress: "0x4b4324bcC6dB9380ABBbbD20B24A16C11FB5B38A",
   tokenAddress: "0x0000000000000000000000000000000000000000", // Zero address for native token
   // chainId is optional, defaults to "8453" (Base)
 };
 
-const queryString = new URLSearchParams({
-  splitAddress: params.splitAddress,
-  tokenAddress: params.tokenAddress,
+const response = await fetch("https://inprocess.world/api/distribute", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify(payload),
 });
-// Only add chainId if provided
-if (params.chainId) {
-  queryString.set("chainId", params.chainId);
-}
-
-const response = await fetch(
-  `https://inprocess.world/api/distribute?${queryString}`
-);
 const data = await response.json();
 console.log(data);
 ```
