@@ -16,11 +16,11 @@ POST https://inprocess.world/api/distribute
 
 The request body must be sent as JSON with `Content-Type: application/json`.
 
-| Name         | Type   | Required | Default                  | Description                                                                                  |
-| ------------ | ------ | -------- | ------------------------ | -------------------------------------------------------------------------------------------- |
-| splitAddress | string | Yes      | —                        | The address of the split contract to distribute from                                         |
-| tokenAddress | string | No       | `0x0...0` (zero address) | The address of the token to distribute (optional, defaults to zero address for native token) |
-| chainId      | string | No       | 8453                     | Chain ID where the split contract exists (default: Base, 8453)                               |
+| Name         | Type   | Required | Default    | Description                                                                                  |
+| ------------ | ------ | -------- | ---------- | -------------------------------------------------------------------------------------------- |
+| splitAddress | string | Yes      | —          | The address of the split contract to distribute from                                         |
+| tokenAddress | string | No       | `0x0...00` | The address of the token to distribute (optional, defaults to zero address for native token) |
+| chainId      | string | No       | 8453       | Chain ID where the split contract exists (default: Base, 8453)                               |
 
 ## Example Requests
 
@@ -155,7 +155,7 @@ console.log(dataERC20);
 
 ## Notes
 
-- `tokenAddress` is optional and defaults to the zero address (`0x0...0`) for native token distribution (ETH)
+- `tokenAddress` is optional and defaults to the zero address (`0x0000000000000000000000000000000000000000`) for native token distribution (ETH)
 - For ERC20 tokens, provide the contract address of the token in `tokenAddress`
 - The payment distribution will split funds according to the allocations configured in the split contract
 - The transaction hash returned can be used to track the payment distribution onchain
