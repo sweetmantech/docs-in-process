@@ -86,10 +86,6 @@ export default defineConfig({
           link: "/moment/comments",
         },
         {
-          text: "Index a Moment",
-          link: "/moment/index",
-        },
-        {
           text: "Update Moment URI",
           link: "/moment/update-uri",
         },
