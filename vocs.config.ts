@@ -23,6 +23,10 @@ export default defineConfig({
           text: "Browsing the Payments",
           link: "/payments",
         },
+        {
+          text: "Distribute the Payment",
+          link: "/payments/distribute",
+        },
       ],
     },
     {
