@@ -74,6 +74,10 @@ export default defineConfig({
           link: "/moment/airdrop",
         },
         {
+          text: "Get Airdrop",
+          link: "/moment/airdrop/get",
+        },
+        {
           text: "SalesConfig",
           link: "/moment/create/salesConfig",
         },
