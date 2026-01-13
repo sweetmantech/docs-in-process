@@ -30,6 +30,15 @@ export default defineConfig({
       ],
     },
     {
+      text: "Airdrops",
+      items: [
+        {
+          text: "Get Airdrops",
+          link: "/airdrops",
+        },
+      ],
+    },
+    {
       text: "Collections",
       items: [
         {
@@ -72,10 +81,6 @@ export default defineConfig({
         {
           text: "Airdrop a Moment",
           link: "/moment/airdrop",
-        },
-        {
-          text: "Get Airdrop",
-          link: "/moment/airdrop/get",
         },
         {
           text: "SalesConfig",

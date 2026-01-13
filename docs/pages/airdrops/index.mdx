@@ -1,25 +1,24 @@
 ---
-title: Get Airdrop
+title: Get Airdrops
 ---
 
-# Get Airdrop
+# Get Airdrops
 
-This page documents the API endpoint for retrieving Moment airdrop information on the In Process protocol.
+This page documents the API endpoint for retrieving Artist airdrop information on the In Process protocol.
 
 ## Endpoint
 
 ```http
-GET https://inprocess.world/api/moment/airdrop
+GET https://inprocess.world/api/airdrops
 ```
 
 ## Query Parameters
 
-The following query parameters are available. Only `collectionAddress` and `tokenId` are required:
+The following query parameters are available. Only `artist_address` is required:
 
 ### Required query parameters
 
-- `collectionAddress` (string): Moment contract address
-- `tokenId` (string): Token ID
+- `artist_address` (string): Artist address
 
 ### Optional query parameters
 
@@ -31,16 +30,15 @@ The following query parameters are available. Only `collectionAddress` and `toke
 :::code-group
 
 ```bash [cURL]
-curl "https://inprocess.world/api/moment/airdrop?collectionAddress=0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E&tokenId=1&chainId=84532&offset=0"
+curl "https://inprocess.world/api/airdrops?artist_address=0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E&chainId=84532&offset=0"
 ```
 
 ```python [Python]
 import requests
 
-url = "https://inprocess.world/api/moment/airdrop"
+url = "https://inprocess.world/api/airdrops"
 params = {
-  "collectionAddress": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-  "tokenId": "1",
+  "artist_address": "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
   "chainId": 84532,
   "offset": 0
 }
@@ -50,43 +48,37 @@ print(response.json())
 
 ```javascript [JavaScript]
 const params = new URLSearchParams({
-  collectionAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-  tokenId: "1",
+  artist_address: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
   chainId: "84532",
   offset: "0",
 });
 
-const response = await fetch(
-  `https://inprocess.world/api/moment/airdrop?${params}`
-);
+const response = await fetch(`https://inprocess.world/api/airdrops?${params}`);
 const data = await response.json();
 console.log(data);
 ```
 
 ```typescript [TypeScript]
 interface AirdropQueryParams {
-  collectionAddress: string;
-  tokenId: string;
+  artist_address: string;
   chainId?: number;
   offset?: number;
 }
 
 const params: AirdropQueryParams = {
-  collectionAddress: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
-  tokenId: "1",
+  artist_address: "0x297F21AAc502571db2c7dBFD271E68Dae7F2cE1E",
   chainId: 84532,
   offset: 0,
 };
 
 const queryString = new URLSearchParams({
-  collectionAddress: params.collectionAddress,
-  tokenId: params.tokenId,
+  artist_address: params.artist_address,
   chainId: (params.chainId ?? 8453).toString(),
   offset: params.offset?.toString() || "0",
 });
 
 const response = await fetch(
-  `https://inprocess.world/api/moment/airdrop?${queryString}`
+  `https://inprocess.world/api/airdrops?${queryString}`
 );
 const data = await response.json();
 ```
