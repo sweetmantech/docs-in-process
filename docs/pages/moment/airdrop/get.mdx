@@ -14,12 +14,17 @@ GET https://inprocess.world/api/moment/airdrop
 
 ## Query Parameters
 
-The following query parameters are required:
+The following query parameters are available. Only `collectionAddress` and `tokenId` are required:
+
+### Required query parameters
 
 - `collectionAddress` (string): Moment contract address
 - `tokenId` (string): Token ID
-- `chainId` (number): Chain ID (optional, default: Base, 8453)
-- `offset` (number): Pagination offset (optional, defaults to 0)
+
+### Optional query parameters
+
+- `chainId` (number): Chain ID (default: Base, 8453)
+- `offset` (number): Pagination offset (default: 0)
 
 ## Example Requests
 
@@ -62,7 +67,7 @@ console.log(data);
 interface AirdropQueryParams {
   collectionAddress: string;
   tokenId: string;
-  chainId: number;
+  chainId?: number;
   offset?: number;
 }
 
@@ -76,7 +81,7 @@ const params: AirdropQueryParams = {
 const queryString = new URLSearchParams({
   collectionAddress: params.collectionAddress,
   tokenId: params.tokenId,
-  chainId: params.chainId.toString(),
+  chainId: (params.chainId ?? 8453).toString(),
   offset: params.offset?.toString() || "0",
 });
 
