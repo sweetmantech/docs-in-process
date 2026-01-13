@@ -30,6 +30,15 @@ export default defineConfig({
       ],
     },
     {
+      text: "Airdrops",
+      items: [
+        {
+          text: "Get Airdrops",
+          link: "/airdrops",
+        },
+      ],
+    },
+    {
       text: "Collections",
       items: [
         {
